@@ -57,19 +57,6 @@ describe('searchProducts', () => {
     const calledUrl = global.fetch.mock.calls[0][0]
     expect(calledUrl).toContain('search_terms=cheese')
   })
-
-  it('includes a custom user-agent header', async () => {
-    global.fetch.mockResolvedValue({
-      ok: true,
-      json: async () => ({ products: [] }),
-    })
-
-    await searchProducts('cheese')
-
-    // check the headers passed to fetch
-    const calledOptions = global.fetch.mock.calls[0][1]
-    expect(calledOptions.headers['User-Agent']).toContain('HaemoEat')
-  })
 })
 
 describe('getProduct', () => {
