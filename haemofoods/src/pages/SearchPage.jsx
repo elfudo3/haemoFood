@@ -1,8 +1,7 @@
-// search page — user types a query, sees matching food products
-import { useState, useEffect } from 'react'
+// search page — user types a query and clicks search to find food products
+import { useState } from 'react'
 import SearchBar from '../components/ui/SearchBar'
 import FoodCard from '../components/food/FoodCard'
-import { useDebounce } from '../hooks/useDebounce'
 import { searchProducts } from '../services/openFoodFacts'
 
 export default function SearchPage() {
@@ -10,47 +9,31 @@ export default function SearchPage() {
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [hasSearched, setHasSearched] = useState(false)
 
-  // only search after the user stops typing for 400ms
-  const debouncedQuery = useDebounce(query, 350)
-
-  useEffect(() => {
+  async function handleSearch() {
     // don't search for empty or very short queries
-    if (debouncedQuery.length < 2) {
+    if (query.trim().length < 2) return
+
+    setLoading(true)
+    setError(null)
+    setHasSearched(true)
+    try {
+      const products = await searchProducts(query.trim())
+      setResults(products)
+    } catch (err) {
+      setError('The food database is busy — this is a free service and can be slow. Please wait a moment and try again.')
       setResults([])
-      return
+    } finally {
+      setLoading(false)
     }
-
-    // create an abort controller to cancel this request if a new one starts
-    const controller = new AbortController()
-
-    async function doSearch() {
-      setLoading(true)
-      setError(null)
-      try {
-        const products = await searchProducts(debouncedQuery, 1, controller.signal)
-        setResults(products)
-      } catch (err) {
-        // ignore aborted requests — they're expected
-        if (err.name === 'AbortError') return
-        setError('Could not reach the food database. Try again in a moment.')
-        setResults([])
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    doSearch()
-
-    // cleanup — abort this request if the query changes before it finishes
-    return () => controller.abort()
-  }, [debouncedQuery])
+  }
 
   return (
     <div>
       <h1 className="text-2xl font-bold text-stone-900 mb-6">Search foods</h1>
 
-      <SearchBar value={query} onChange={setQuery} />
+      <SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
 
       {/* loading state */}
       {loading && (
@@ -72,7 +55,7 @@ export default function SearchPage() {
       )}
 
       {/* no results state */}
-      {!loading && !error && debouncedQuery.length >= 2 && results.length === 0 && (
+      {!loading && !error && hasSearched && results.length === 0 && (
         <p className="text-stone-400 text-sm mt-6">
           No products found. Try searching for a different food or brand.
         </p>
