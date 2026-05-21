@@ -9,8 +9,14 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test-setup.js',
   },
+  server: {
+    proxy: {
+      // redirect /api requests to Open Food Facts
+      '/api': {
+        target: 'https://world.openfoodfacts.org',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })
-
-
-
-

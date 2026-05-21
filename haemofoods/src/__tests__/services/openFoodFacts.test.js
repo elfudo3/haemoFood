@@ -108,3 +108,5 @@ describe('getProduct', () => {
     await expect(getProduct('123')).rejects.toThrow('API error: 500')
   })
 })
+
+//Test passed: GREEN
