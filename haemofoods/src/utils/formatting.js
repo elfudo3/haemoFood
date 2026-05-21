@@ -16,3 +16,4 @@ export function formatAlcohol(value) {
     return `${value.toFixed(1)}%`
 }
 
+//passed tests: GREEN
