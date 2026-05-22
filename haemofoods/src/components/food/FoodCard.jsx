@@ -53,6 +53,12 @@ export default function FoodCard({ product }) {
         <p className="text-sm text-stone-400 truncate">
           {product.brands || 'Unknown brand'}
         </p>
+        <span className={`text-xs px-1.5 py-0.5 rounded mt-1 inline-block ${product.source === 'usda'
+            ? 'bg-blue-50 text-blue-600'
+            : 'bg-emerald-50 text-emerald-600'
+          }`}>
+          {product.source === 'usda' ? 'USDA' : 'Open Food Facts'}
+        </span>
       </div>
 
       {/* safety badge */}

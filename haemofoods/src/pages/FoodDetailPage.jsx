@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getProduct } from '../services/openFoodFacts'
+import { getUSDAProduct } from '../services/usdaFoodData'
 import { getIronRating, getCategoryRating } from '../utils/scoring'
 import { formatIron, formatVitaminC, formatAlcohol } from '../utils/formatting'
 
@@ -16,7 +17,18 @@ export default function FoodDetailPage() {
       setLoading(true)
       setError(null)
       try {
-        const data = await getProduct(code)
+        let data
+
+        // check if this is a USDA product (codes start with "usda_")
+        if (code.startsWith('usda_')) {
+          // strip the "usda_" prefix to get the real FDC ID
+          const fdcId = code.replace('usda_', '')
+          data = await getUSDAProduct(fdcId)
+        } else {
+          // regular barcode — look it up on Open Food Facts
+          data = await getProduct(code)
+        }
+
         setProduct(data)
       } catch (err) {
         setError('Could not load product details. Try again in a moment.')
@@ -61,9 +73,9 @@ export default function FoodDetailPage() {
 
       {/* product header */}
       <div className="flex items-start gap-6 mt-4 mb-6">
-        {product.image_url ? (
+        {product.image_url || product.image_small_url ? (
           <img
-            src={product.image_url}
+            src={product.image_url || product.image_small_url}
             alt={product.product_name}
             className="w-32 h-32 rounded-lg object-cover"
           />
@@ -77,6 +89,14 @@ export default function FoodDetailPage() {
             {product.product_name || 'Unknown product'}
           </h1>
           <p className="text-stone-400">{product.brands || 'Unknown brand'}</p>
+          {/* source tag so user knows where the data came from */}
+          <span className={`text-xs px-1.5 py-0.5 rounded mt-2 inline-block ${
+            product.source === 'usda'
+              ? 'bg-blue-50 text-blue-600'
+              : 'bg-emerald-50 text-emerald-600'
+          }`}>
+            {product.source === 'usda' ? 'USDA' : 'Open Food Facts'}
+          </span>
         </div>
       </div>
 
@@ -115,7 +135,7 @@ export default function FoodDetailPage() {
         </div>
       </div>
 
-      {/* category tags — your idea */}
+      {/* category tags — only shown if available (OFF products have these, USDA don't) */}
       {product.categories_tags && product.categories_tags.length > 0 && (
         <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6">
           <h2 className="font-bold text-stone-900 mb-3">Category Tags</h2>

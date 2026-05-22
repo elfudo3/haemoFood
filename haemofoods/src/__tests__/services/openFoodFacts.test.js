@@ -1,14 +1,17 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { searchProducts, getProduct } from '../../services/openFoodFacts'
 
-// replace the real fetch with a fake one we control
 beforeEach(() => {
   global.fetch = vi.fn()
+  vi.useFakeTimers()
+})
+
+afterEach(() => {
+  vi.useRealTimers()
 })
 
 describe('searchProducts', () => {
   it('returns an array of products from the API', async () => {
-    // set up the fake response
     const fakeProducts = [
       { code: '123', product_name: 'Test Milk', brands: 'TestBrand' },
       { code: '456', product_name: 'Test Beef', brands: 'MeatCo' },
@@ -21,7 +24,6 @@ describe('searchProducts', () => {
 
     const results = await searchProducts('milk')
 
-    // check we got the right data back
     expect(results).toEqual(fakeProducts)
     expect(results).toHaveLength(2)
   })
@@ -42,7 +44,10 @@ describe('searchProducts', () => {
       status: 503,
     })
 
-    await expect(searchProducts('milk')).rejects.toThrow('API error: 503')
+    const promise = searchProducts('milk-error-test')
+    const assertion = expect(promise).rejects.toThrow('API error: 503')
+    await vi.advanceTimersByTimeAsync(10000)
+    await assertion
   })
 
   it('sends the search query in the URL', async () => {
@@ -53,7 +58,6 @@ describe('searchProducts', () => {
 
     await searchProducts('cheese')
 
-    // check that fetch was called with a URL containing our search term
     const calledUrl = global.fetch.mock.calls[0][0]
     expect(calledUrl).toContain('search_terms=cheese')
   })
@@ -92,8 +96,9 @@ describe('getProduct', () => {
       status: 500,
     })
 
-    await expect(getProduct('123')).rejects.toThrow('API error: 500')
+    const promise = getProduct('999-error-test')
+    const assertion = expect(promise).rejects.toThrow('API error: 500')
+    await vi.advanceTimersByTimeAsync(10000)
+    await assertion
   })
 })
-
-//Test passed: GREEN

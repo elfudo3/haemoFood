@@ -17,6 +17,12 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
+      // redirect /usda-api requests to USDA database
+      '/usda-api': {
+        target: 'https://api.nal.usda.gov/fdc/v1',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/usda-api/, ''),
+      },
     },
   },
 })
