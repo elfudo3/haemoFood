@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getProduct } from '../services/openFoodFacts'
 import { getUSDAProduct } from '../services/usdaFoodData'
+import { getCuratedProduct } from '../services/curatedSearch'
 import { getIronRating, getCategoryRating } from '../utils/scoring'
 import { formatIron, formatVitaminC, formatAlcohol } from '../utils/formatting'
 
@@ -19,8 +20,10 @@ export default function FoodDetailPage() {
       try {
         let data
 
-        // check if this is a USDA product (codes start with "usda_")
-        if (code.startsWith('usda_')) {
+        if (code.startsWith('cur_')) {
+          // curated product — instant local lookup, no API call
+          data = getCuratedProduct(code)
+        } else if (code.startsWith('usda_')) {
           // strip the "usda_" prefix to get the real FDC ID
           const fdcId = code.replace('usda_', '')
           data = await getUSDAProduct(fdcId)
@@ -49,10 +52,16 @@ export default function FoodDetailPage() {
   const vitaminC = product.nutriments?.['vitamin-c_100g'] ?? null
   const alcohol = product.nutriments?.alcohol_100g ?? null
 
-  // determine safety rating — iron first, then category fallback
-  const rating = iron != null
-    ? getIronRating(iron)
-    : getCategoryRating(product.categories_tags || [])
+  // curated foods carry their own clinically accurate rating
+  // API foods need rating calculated from iron data or category fallback
+  let rating
+  if (product.rating) {
+    rating = product.rating
+  } else {
+    rating = iron != null
+      ? getIronRating(iron)
+      : getCategoryRating(product.categories_tags || [])
+  }
 
   // rating display config
   const ratingConfig = {
@@ -62,7 +71,18 @@ export default function FoodDetailPage() {
     unknown: { label: '❓ Unknown', bg: 'bg-stone-100 text-stone-500', message: 'Not enough data to determine safety' },
   }
 
-  const { label, bg, message } = ratingConfig[rating]
+  const { label, bg } = ratingConfig[rating]
+
+  // curated foods have a detailed clinical reason — use it instead of the generic message
+  const message = product.reason || ratingConfig[rating].message
+
+  // source tag config
+  const sourceConfig = {
+    curated: { label: 'HaemoEat', style: 'bg-red-50 text-red-600' },
+    usda: { label: 'USDA', style: 'bg-blue-50 text-blue-600' },
+    off: { label: 'Open Food Facts', style: 'bg-emerald-50 text-emerald-600' },
+  }
+  const source = sourceConfig[product.source] || sourceConfig.off
 
   return (
     <div>
@@ -79,6 +99,10 @@ export default function FoodDetailPage() {
             alt={product.product_name}
             className="w-32 h-32 rounded-lg object-cover"
           />
+        ) : product.emoji ? (
+          <div className="w-32 h-32 rounded-lg bg-stone-50 flex items-center justify-center text-6xl">
+            {product.emoji}
+          </div>
         ) : (
           <div className="w-32 h-32 rounded-lg bg-stone-100 flex items-center justify-center text-stone-400">
             No image
@@ -88,14 +112,9 @@ export default function FoodDetailPage() {
           <h1 className="text-2xl font-bold text-stone-900">
             {product.product_name || 'Unknown product'}
           </h1>
-          <p className="text-stone-400">{product.brands || 'Unknown brand'}</p>
-          {/* source tag so user knows where the data came from */}
-          <span className={`text-xs px-1.5 py-0.5 rounded mt-2 inline-block ${
-            product.source === 'usda'
-              ? 'bg-blue-50 text-blue-600'
-              : 'bg-emerald-50 text-emerald-600'
-          }`}>
-            {product.source === 'usda' ? 'USDA' : 'Open Food Facts'}
+          <p className="text-stone-400">{product.brands || product.category || ''}</p>
+          <span className={`text-xs px-1.5 py-0.5 rounded mt-2 inline-block ${source.style}`}>
+            {source.label}
           </span>
         </div>
       </div>
@@ -135,7 +154,7 @@ export default function FoodDetailPage() {
         </div>
       </div>
 
-      {/* category tags — only shown if available (OFF products have these, USDA don't) */}
+      {/* category tags — only shown for API products that have them */}
       {product.categories_tags && product.categories_tags.length > 0 && (
         <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6">
           <h2 className="font-bold text-stone-900 mb-3">Category Tags</h2>

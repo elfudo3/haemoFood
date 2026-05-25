@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom'
 import { getIronRating, getCategoryRating } from '../../utils/scoring'
 
 export default function FoodCard({ product }) {
-  // extract iron from nutriments, falling back to null
-  const iron = product.nutriments?.iron_100g ?? null
-
-  // use iron rating first, fall back to category rating
-  const rating = iron != null
-    ? getIronRating(iron)
-    : getCategoryRating(product.categories_tags || [])
+  // curated foods already have a clinically accurate rating — use it directly
+  // API foods need rating calculated from iron data or category fallback
+  let rating
+  if (product.rating) {
+    rating = product.rating
+  } else {
+    const iron = product.nutriments?.iron_100g ?? null
+    rating = iron != null
+      ? getIronRating(iron)
+      : getCategoryRating(product.categories_tags || [])
+  }
 
   // map rating to badge colours
   const badgeStyles = {
@@ -27,18 +31,30 @@ export default function FoodCard({ product }) {
     unknown: '❓ Unknown',
   }
 
+  // source tag config
+  const sourceConfig = {
+    curated: { label: 'HaemoEat', style: 'bg-red-50 text-red-600' },
+    usda: { label: 'USDA', style: 'bg-blue-50 text-blue-600' },
+    off: { label: 'Open Food Facts', style: 'bg-emerald-50 text-emerald-600' },
+  }
+  const source = sourceConfig[product.source] || sourceConfig.off
+
   return (
     <Link
       to={`/food/${product.code}`}
       className="flex items-center gap-4 p-4 bg-white rounded-lg border border-stone-200 hover:border-red-300 transition-colors"
     >
-      {/* product image or placeholder */}
-      {product.image_small_url ? (
+      {/* product image, emoji fallback, or placeholder */}
+      {product.image_small_url || product.image ? (
         <img
-          src={product.image_small_url}
+          src={product.image_small_url || product.image}
           alt={product.product_name}
           className="w-16 h-16 rounded object-cover"
         />
+      ) : product.emoji ? (
+        <div className="w-16 h-16 rounded bg-stone-50 flex items-center justify-center text-3xl">
+          {product.emoji}
+        </div>
       ) : (
         <div className="w-16 h-16 rounded bg-stone-100 flex items-center justify-center text-stone-400 text-xs">
           No img
@@ -51,13 +67,10 @@ export default function FoodCard({ product }) {
           {product.product_name || 'Unknown product'}
         </p>
         <p className="text-sm text-stone-400 truncate">
-          {product.brands || 'Unknown brand'}
+          {product.brands || product.category || ''}
         </p>
-        <span className={`text-xs px-1.5 py-0.5 rounded mt-1 inline-block ${product.source === 'usda'
-            ? 'bg-blue-50 text-blue-600'
-            : 'bg-emerald-50 text-emerald-600'
-          }`}>
-          {product.source === 'usda' ? 'USDA' : 'Open Food Facts'}
+        <span className={`text-xs px-1.5 py-0.5 rounded mt-1 inline-block ${source.style}`}>
+          {source.label}
         </span>
       </div>
 

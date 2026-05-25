@@ -1,5 +1,6 @@
 // main layout wrapper with navbar and footer shared across all pages
 import { Link, Outlet } from 'react-router-dom'
+import ChatWidget from '../components/ui/ChatWidget'
 
 export default function MainLayout() {
   return (
@@ -28,6 +29,7 @@ export default function MainLayout() {
       <footer className="bg-white border-t border-stone-200 px-6 py-4 text-center text-xs text-stone-400">
         HaemoFood — a dietary guide, not medical advice
       </footer>
+      <ChatWidget />
     </div>
   )
 }

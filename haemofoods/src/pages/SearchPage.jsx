@@ -1,102 +1,98 @@
-// search page — queries both databases and displays results in two columns
+// search page — searches the curated foods database with rating filter
 import { useState } from 'react'
 import SearchBar from '../components/ui/SearchBar'
 import FoodCard from '../components/food/FoodCard'
-import { searchAll } from '../services/combinedSearch'
+import { searchCurated } from '../services/curatedSearch'
+
+// filter button config — label, value, colours
+const FILTERS = [
+  { label: 'All', value: 'all', style: 'bg-stone-100 text-stone-700 border-stone-300' },
+  { label: '🟢 Safe', value: 'safe', style: 'bg-green-100 text-green-800 border-green-300' },
+  { label: '🟡 Moderate', value: 'moderate', style: 'bg-yellow-100 text-yellow-800 border-yellow-300' },
+  { label: '🔴 Avoid', value: 'avoid', style: 'bg-red-100 text-red-800 border-red-300' },
+]
 
 export default function SearchPage() {
   // search query typed by the user
   const [query, setQuery] = useState('')
-  // results grouped by source: { off: [...], usda: [...] }
-  const [results, setResults] = useState({ off: [], usda: [] })
-  // loading state while waiting for API responses
-  const [loading, setLoading] = useState(false)
-  // error message if something goes wrong
-  const [error, setError] = useState(null)
-  // tracks whether the user has searched at least once (for "no results" message)
+  // all results from the curated search (unfiltered)
+  const [results, setResults] = useState([])
+  // which rating filter is active
+  const [activeFilter, setActiveFilter] = useState('all')
+  // tracks whether the user has searched at least once
   const [hasSearched, setHasSearched] = useState(false)
 
-  async function handleSearch() {
+  function handleSearch() {
     // don't search for empty or very short queries
     if (query.trim().length < 2) return
 
-    setLoading(true)
-    setError(null)
+    const found = searchCurated(query.trim())
+    setResults(found)
     setHasSearched(true)
-    try {
-      // searchAll queries both APIs in parallel and returns grouped results
-      const grouped = await searchAll(query.trim())
-      setResults(grouped)
-    } catch (err) {
-      setError('Something went wrong — please try again.')
-      setResults({ off: [], usda: [] })
-    } finally {
-      setLoading(false)
-    }
+    // reset filter on each new search
+    setActiveFilter('all')
   }
 
-  // check if either column has results
-  const hasResults = results.off.length > 0 || results.usda.length > 0
+  // apply the active filter to the results
+  // if filter is 'all', show everything
+  const filtered = activeFilter === 'all'
+    ? results
+    : results.filter(p => p.rating === activeFilter)
+
+  const hasResults = filtered.length > 0
 
   return (
     <div>
       <h1 className="text-2xl font-bold text-stone-900 mb-6">Search foods</h1>
 
-      {/* search input and button */}
+      {/* search input */}
       <SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
 
-      {/* loading spinner */}
-      {loading && (
-        <p className="text-stone-400 text-sm mt-6">Searching...</p>
-      )}
-
-      {/* error message */}
-      {error && (
-        <p className="text-red-600 text-sm mt-6">{error}</p>
-      )}
-
-      {/* results — two columns on desktop, stacked on mobile */}
-      {!loading && !error && hasResults && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-
-          {/* left column — Open Food Facts (packaged/branded products) */}
-          <div>
-            <h2 className="text-sm font-semibold text-emerald-700 bg-emerald-50 px-3 py-2 rounded-t-lg">
-              🛒 Open Food Facts — packaged products
-            </h2>
-            <div className="flex flex-col gap-3 mt-3">
-              {results.off.length > 0 ? (
-                results.off.map((product) => (
-                  <FoodCard key={product.code} product={product} />
-                ))
-              ) : (
-                <p className="text-stone-400 text-sm">No packaged products found.</p>
-              )}
-            </div>
-          </div>
-
-          {/* right column — USDA (generic/unbranded foods) */}
-          <div>
-            <h2 className="text-sm font-semibold text-blue-700 bg-blue-50 px-3 py-2 rounded-t-lg">
-              🔬 USDA — generic foods
-            </h2>
-            <div className="flex flex-col gap-3 mt-3">
-              {results.usda.length > 0 ? (
-                results.usda.map((product) => (
-                  <FoodCard key={product.code} product={product} />
-                ))
-              ) : (
-                <p className="text-stone-400 text-sm">No generic foods found.</p>
-              )}
-            </div>
-          </div>
+      {/* filter buttons — only show after a search */}
+      {hasSearched && results.length > 0 && (
+        <div className="flex gap-2 mt-4 flex-wrap">
+          {FILTERS.map(filter => (
+            <button
+              key={filter.value}
+              onClick={() => setActiveFilter(filter.value)}
+              className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${
+                activeFilter === filter.value ? 'opacity-100' : 'opacity-50'
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
         </div>
       )}
 
-      {/* no results from either database */}
-      {!loading && !error && hasSearched && !hasResults && (
+      {/* results count */}
+      {hasSearched && results.length > 0 && (
+        <p className="text-xs text-stone-400 mt-3">
+          {filtered.length} result{filtered.length !== 1 ? 's' : ''}
+          {activeFilter !== 'all' ? ` — ${activeFilter} only` : ''}
+        </p>
+      )}
+
+      {/* results list */}
+      {hasResults && (
+        <div className="flex flex-col gap-3 mt-3">
+          {filtered.map(product => (
+            <FoodCard key={product.code} product={product} />
+          ))}
+        </div>
+      )}
+
+      {/* no results after filtering */}
+      {hasSearched && results.length > 0 && filtered.length === 0 && (
         <p className="text-stone-400 text-sm mt-6">
-          No products found. Try searching for a different food or brand.
+          No {activeFilter} foods found for "{query}". Try a different filter.
+        </p>
+      )}
+
+      {/* no results at all */}
+      {hasSearched && results.length === 0 && (
+        <p className="text-stone-400 text-sm mt-6">
+          No foods found for "{query}". Try searching a different term.
         </p>
       )}
     </div>
