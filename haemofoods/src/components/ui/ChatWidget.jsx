@@ -84,9 +84,16 @@ export default function ChatWidget() {
 
           {/* header */}
           <div className="bg-red-700 px-4 py-3 flex items-center justify-between">
-            <div>
-              <p className="text-white font-bold text-sm">HaemoBot</p>
-              <p className="text-red-200 text-xs">Haemochromatosis dietary assistant</p>
+          <div className="flex items-center gap-2">
+              <img
+                src="/images/haemobot-avatar.png"
+                alt="HaemoBot"
+                className="w-8 h-8 rounded-full object-cover"
+              />
+              <div>
+                <p className="text-white font-bold text-sm">HaemoBot</p>
+                <p className="text-red-200 text-xs">Haemochromatosis dietary assistant</p>
+              </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -138,7 +145,8 @@ export default function ChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         className="w-14 h-14 bg-red-700 hover:bg-red-800 text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-colors"
       >
-        {isOpen ? '✕' : '💬'}
+        {isOpen ? '✕' : <img src="/images/haemobot-avatar.png" alt="HaemoBot" className="w-full h-full object=cover" />
+        }
       </button>
 
     </div>
