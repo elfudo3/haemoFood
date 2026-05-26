@@ -1,37 +1,87 @@
 // floating chat widget — fixed to bottom-right of every page
 import { useState } from 'react'
 
+//system prompt — defines the bot's personality and boundaries
+const SYSTEM_PROMPT = `You are HaemoBot, a dietary assistant for haemochromatosis patients.
+
+Rules:
+- ONLY answer questions about haemochromatosis, iron, and diet
+- If asked anything off-topic, politely redirect: "I can only help with haemochromatosis and dietary questions."
+- Base advice on the Irish Haemochromatosis Association guidelines
+- Explain that heme iron (meat) is absorbed 2-3x more than non-heme iron (plants)
+- Recommend tea/coffee with meals to reduce iron absorption
+- Advise against vitamin C supplements (but whole fruit is fine)
+- Advise against alcohol (increases absorption and liver stress)
+- Keep answers short — 2 to 3 sentences max
+- End any medical question with: "Always consult your dietitian for personalised advice."
+- Never diagnose or prescribe — you are a guide, not a doctor`
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
 
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: 'Hi! I\'m HaemoBot. I can help you with questions about haemochromatosis and diet - things like which foods to eat or avoid, how iron absorbsion works, and practical tips for managing the condition. What would you like to know?'
+      content: 'Hi! I\'m HaemoBot. I can help you with questions about haemochromatosis and diet - things like which foods to eat or avoid, how iron absorption works, and practical tips for managing the condition. What would you like to know?'
     }
   ])
 
   const [input, setInput] = useState('')
 
-  function handleSend() {
+  //sends messages to OpenRouter API and returns the bot's reply
+  async function getBotReply(conversationHistory) {
+    //only send the last 5 messages for context (plus the system prompt)
+    const recentMessages = conversationHistory.slice(-5)
+
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: '~anthropic/claude-haiku-latest',
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          ...recentMessages,
+        ],
+      }),
+    })
+
+    const data = await response.json()
+    return data.choices[0].message.content
+  }
+
+  async function handleSend() {
     //do nothing if the input is empty or just whitespace
     if (!input.trim()) return
 
-    //add the users message to the list
+    //add the user's message to the list
     const userMessage = { role: 'user', content: input.trim() }
-    setMessages(prev => [...prev, userMessage])
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
 
     //clear the input field
     setInput('')
+
+    //call the API and add the bot's reply
+    try {
+      const reply = await getBotReply(updatedMessages)
+      setMessages(prev => [...prev, { role: 'assistant', content: reply }])
+    } catch (err) {
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: 'Sorry, I couldn\'t connect. Please try again in a moment.'
+      }])
+    }
   }
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
 
-      {/* chat window — only visible when open */}
       {isOpen && (
         <div className="mb-4 w-80 h-96 bg-white rounded-2xl shadow-xl border border-stone-200 flex flex-col overflow-hidden">
-          
+
           {/* header */}
           <div className="bg-red-700 px-4 py-3 flex items-center justify-between">
             <div>
