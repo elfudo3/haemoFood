@@ -1,5 +1,5 @@
 // floating chat widget — fixed to bottom-right of every page
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 //system prompt — defines the bot's personality and boundaries
 const SYSTEM_PROMPT = `You are HaemoBot, a dietary assistant for haemochromatosis patients.
@@ -27,6 +27,15 @@ export default function ChatWidget() {
   ])
 
   const [input, setInput] = useState('')
+
+  //ref attached to the bottom of the message list - used to scroll into view
+  const bottomRef = useRef(null)
+
+  //scrolls to the bottom every time messages updates
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
+
 
   //sends messages to OpenRouter API and returns the bot's reply
   async function getBotReply(conversationHistory) {
@@ -117,6 +126,7 @@ export default function ChatWidget() {
                 {message.content}
               </div>
             ))}
+            <div ref={bottomRef} />
           </div>
 
           {/* input bar */}
@@ -145,7 +155,9 @@ export default function ChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         className="w-14 h-14 bg-red-700 hover:bg-red-800 text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-colors"
       >
-        {isOpen ? '✕' : <img src="/images/haemobot-avatar.png" alt="HaemoBot" className="w-full h-full object=cover" />
+        {isOpen 
+          ? '✕' 
+          : <img src="/images/haemobot-avatar.png" alt="HaemoBot" className="w-full h-full object=cover" />
         }
       </button>
 
