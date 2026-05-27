@@ -1,5 +1,4 @@
-
-// about haemochromatosis page shell — content will be added later
+// about haemochromatosis — plain-language info page with dietary guidance
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto">
@@ -8,7 +7,7 @@ export default function AboutPage() {
         Plain-language guide - not medical advice
       </p>
 
-      {/* What is haemochromatosis */}
+      {/* what is haemochromatosis */}
       <section className="mb-8">
         <h2 className="text-lg font-bold text-stone-900 mb-3">What is Haemochromatosis?</h2>
         <p className="text-stone-600 mb-3">
@@ -17,20 +16,52 @@ export default function AboutPage() {
           amount of iron and discards the rest — with haemochromatosis, that control mechanism
           is faulty, so iron builds up over time.
         </p>
-        <img src="/images/hereditaryHaemo.png" alt="Diagram of haemo liver" className="w-full rounded-lg my-4" />
+
+        <p className="text-sm text-stone-500 mb-2">
+          Common symptoms of hereditary haemochromatosis — many overlap with other conditions,
+          which is why it often goes undiagnosed for years.
+        </p>
+        <img
+          src="/images/HHSymptoms.png"
+          alt="Diagram showing common symptoms of hereditary haemochromatosis including fatigue, joint pain, skin discolouration, and organ damage"
+          className="w-full rounded-lg mb-4"
+        />
+
         <p className="text-stone-600 mb-3">
           Excess iron gets deposited in organs — especially the liver, heart, and pancreas — where
-          it can cause serious damage if left untreated. Around 1 in 83 people in Ireland carry
-          two copies of the gene variant responsible.
+          it can cause serious damage if left untreated. In the liver, iron overload progresses
+          through stages — from initial iron accumulation to inflammation, fibrosis, and in severe
+          cases, cirrhosis. Early diagnosis and treatment can halt this progression entirely.
         </p>
+
+        <p className="text-sm text-stone-500 mb-2">
+          How iron overload damages the liver over time — from healthy tissue through to cirrhosis.
+        </p>
+        <img
+          src="/images/HHLiverDamageProgression.jpeg"
+          alt="Diagram showing the progression of liver damage from iron overload: healthy liver, iron accumulation, fibrosis, and cirrhosis"
+          className="w-full rounded-lg mb-4"
+        />
+
         <p className="text-stone-600 mb-3">
-          The main treatment is venesection (giving blood regularly to reduce iron levels). Diet
-          alone cannot treat haemochromatosis, but managing what you eat plays an important
-          supporting role alongside treatment.
+          The main treatment is venesection — regularly removing blood to reduce the body's
+          iron stores. Each session removes around 250mg of iron. Most patients start with
+          weekly sessions until iron levels normalise, then move to maintenance sessions
+          every few months. Diet alone cannot treat haemochromatosis, but managing what you
+          eat plays an important supporting role alongside treatment.
         </p>
+
+        <p className="text-sm text-stone-500 mb-2">
+          Venesection (phlebotomy) — the primary treatment for reducing iron overload.
+        </p>
+        <img
+          src="/images/Phlebotomy.png"
+          alt="Diagram showing the phlebotomy procedure used to treat haemochromatosis by removing iron-rich blood"
+          className="w-full rounded-lg mb-4"
+        />
       </section>
 
-      {/* Why diet matters */}
+      {/* why diet matters */}
       <section className="mb-8">
         <h2 className="text-lg font-bold text-stone-900 mb-3">Why does diet matter?</h2>
         <p className="text-stone-600 mb-3">
