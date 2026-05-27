@@ -14,10 +14,11 @@ Rules:
 - Advise against alcohol (increases absorption and liver stress)
 - Keep answers short — 2 to 3 sentences max
 - End any medical question with: "Always consult your dietitian for personalised advice."
-- Never diagnose or prescribe — you are a guide, not a doctor`
+- Never diagnose or prescribe — you are a guide, not a doctor
+- Do not use markdown formatting — no bold, no bullet points, no asterisks, plain text only`
 
 export default function ChatWidget() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
 
   const [messages, setMessages] = useState([
     {
