@@ -93,21 +93,21 @@ export default function ChatWidget() {
         <div className="mb-4 w-80 h-96 bg-white rounded-2xl shadow-xl border border-stone-200 flex flex-col overflow-hidden">
 
           {/* header */}
-          <div className="bg-red-700 px-4 py-3 flex items-center justify-between">
+          <div className="bg-red-100 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
               <img
-                src="/images/haemobot-avatar.png"
+                src="/images/HaemoBot_v1.png"
                 alt="HaemoBot"
                 className="w-8 h-8 rounded-full object-cover"
               />
               <div>
-                <p className="text-white font-bold text-sm">HaemoBot</p>
-                <p className="text-red-200 text-xs">Haemochromatosis dietary assistant</p>
+                <p className="text-stone-800 font-bold text-sm">HaemoBot</p>
+                <p className="text-black-500 text-xs">Haemochromatosis dietary assistant</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-red-200 hover:text-white text-lg leading-none"
+              className="bg-red-100 hover:text-white text-lg leading-none"
             >
               ✕
             </button>
@@ -154,11 +154,11 @@ export default function ChatWidget() {
       {/* floating button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-red-700 hover:bg-red-800 text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-colors"
+        className="w-14 h-14 bg-red-300 hover:bg-red-800 text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-colors"
       >
         {isOpen 
           ? '✕' 
-          : <img src="/images/haemobot-avatar.png" alt="HaemoBot" className="w-full h-full object=cover" />
+          : <img src="/images/HaemoBot_v1.png" alt="HaemoBot" className="w-full h-full object=cover" />
         }
       </button>
 
