@@ -44,22 +44,6 @@ export default function FoodCard({ product }) {
       to={`/food/${product.code}`}
       className="flex items-center gap-4 p-4 bg-white rounded-lg border border-stone-200 hover:border-red-300 transition-colors"
     >
-      {/* product image, emoji fallback, or placeholder */}
-      {product.image_small_url || product.image ? (
-        <img
-          src={product.image_small_url || product.image}
-          alt={product.product_name}
-          className="w-16 h-16 rounded object-cover"
-        />
-      ) : product.emoji ? (
-        <div className="w-16 h-16 rounded bg-stone-50 flex items-center justify-center text-3xl">
-          {product.emoji}
-        </div>
-      ) : (
-        <div className="w-16 h-16 rounded bg-stone-100 flex items-center justify-center text-stone-400 text-xs">
-          No img
-        </div>
-      )}
 
       {/* product info */}
       <div className="flex-1 min-w-0">
