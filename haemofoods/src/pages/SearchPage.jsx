@@ -13,6 +13,13 @@ const FILTERS = [
   { label: '🔴 Avoid', value: 'avoid', style: 'bg-red-100 text-red-800 border-red-300' },
 ]
 
+const SOURCE_FILTERS = [
+  { label: 'All Sources', value: 'all', style: 'bg-stone-100 text-stone-700 border-stone-300' },
+  { label: 'HaemoFood', value: 'curated', style: 'bg-red-50 text-red-600 border-red-300' },
+  { label: 'USDA', value: 'usda', style: 'bg-blue-50 text-blue-600 border-blue-300' },
+]
+
+
 export default function SearchPage() {
   // search query typed by the user
   const [query, setQuery] = useState('')
@@ -24,7 +31,8 @@ export default function SearchPage() {
   const [hasSearched, setHasSearched] = useState(false)
   //true while waiting for USDA API response
   const [loading, setLoading] = useState(false)
-
+  //which source filter is active (all, curated, usda)
+  const [activeSource, setActiveSource] = useState('all')
 
   async function handleSearch() {
     //don't search for empty or very short queries
@@ -35,6 +43,8 @@ export default function SearchPage() {
     setHasSearched(true)
     //reset filter on each new search
     setActiveFilter('all')
+    //reset source filter too
+    setActiveSource('all')
 
     //searchAll is async because it calls the USDA API
     const found = await searchAll(query.trim())
@@ -44,14 +54,22 @@ export default function SearchPage() {
     setLoading(false)
   }
 
-  const filtered = activeFilter === 'all'
-    ? results
-    : results.filter(p => {
-      //curated foods have their own rating, API foods need it calculated
+  //apply both filters: rating AND source
+  //first filter by source, then by rating
+  const filtered = results.filter(p => {
+    //source filter — skip if 'all' is selected
+    if (activeSource !== 'all' && p.source !== activeSource) return false
+
+    //rating filter — skip if 'all' is selected
+    if (activeFilter !== 'all') {
+      //curated foods carry their own rating, API foods need it calculated
       const rating = p.rating
         || getIronRating(p.nutriments?.iron_100g ?? null)
-      return rating === activeFilter
-    })
+      if (rating !== activeFilter) return false
+    }
+
+    return true
+  })
 
   const hasResults = filtered.length > 0
 
@@ -64,19 +82,38 @@ export default function SearchPage() {
 
       {/* filter buttons — only show after a search */}
       {hasSearched && results.length > 0 && (
-        <div className="flex gap-2 mt-4 flex-wrap">
-          {FILTERS.map(filter => (
-            <button
-              key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
-              className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${activeFilter === filter.value ? 'opacity-100' : 'opacity-50'
+        <>
+          <div className="flex gap-2 mt-4 flex-wrap">
+            {FILTERS.map(filter => (
+              <button
+                key={filter.value}
+                onClick={() => setActiveFilter(filter.value)}
+                className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${
+                  activeFilter === filter.value ? 'opacity-100' : 'opacity-50'
                 }`}
-            >
-              {filter.label}
-            </button>
-          ))}
-        </div>
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex gap-2 mt-2 flex-wrap">
+            {SOURCE_FILTERS.map(filter => (
+              <button
+                key={filter.value}
+                onClick={() => setActiveSource(filter.value)}
+                className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${
+                  activeSource === filter.value ? 'opacity-100' : 'opacity-50'
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+        </>
       )}
+
+      
 
       {loading && (
         <p className="text-stone-400 text-sm mt-6">Searching...</p>
