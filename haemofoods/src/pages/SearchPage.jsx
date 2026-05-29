@@ -107,7 +107,6 @@ export default function SearchPage() {
       )}
 
       {/* no results at all */}
-
       {!loading && hasSearched && results.length === 0 && (
         <p className="text-stone-400 text-sm mt-6">
           No foods found for "{query}". Try searching a different term.

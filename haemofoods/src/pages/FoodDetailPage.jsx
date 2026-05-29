@@ -92,31 +92,14 @@ export default function FoodDetailPage() {
       </Link>
 
       {/* product header */}
-      <div className="flex items-start gap-6 mt-4 mb-6">
-        {product.image_url || product.image_small_url ? (
-          <img
-            src={product.image_url || product.image_small_url}
-            alt={product.product_name}
-            className="w-32 h-32 rounded-lg object-cover"
-          />
-        ) : product.emoji ? (
-          <div className="w-32 h-32 rounded-lg bg-stone-50 flex items-center justify-center text-6xl">
-            {product.emoji}
-          </div>
-        ) : (
-          <div className="w-32 h-32 rounded-lg bg-stone-100 flex items-center justify-center text-stone-400">
-            No image
-          </div>
-        )}
-        <div>
-          <h1 className="text-2xl font-bold text-stone-900">
-            {product.product_name || 'Unknown product'}
-          </h1>
-          <p className="text-stone-400">{product.brands || product.category || ''}</p>
-          <span className={`text-xs px-1.5 py-0.5 rounded mt-2 inline-block ${source.style}`}>
-            {source.label}
-          </span>
-        </div>
+      <div className="mt-4 mb-6">
+        <h1 className="text-2xl font-bold text-stone-900">
+          {product.product_name || 'Unknown product'}
+        </h1>
+        <p className="text-stone-400">{product.brands || product.category || ''}</p>
+        <span className={`text-xs px-1.5 py-0.5 rounded mt-2 inline-block ${source.style}`}>
+          {source.label}
+        </span>
       </div>
 
       {/* safety rating banner */}
