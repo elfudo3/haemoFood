@@ -137,6 +137,20 @@ export default function FoodDetailPage() {
         </div>
       </div>
 
+      {/* data source disclaimer - only shown for HaemoFood curated results */}
+      {product.source === 'curated' && (
+        <div className='bg-blue-50 rounded-lg p-4 mb-3 text-xs text-blue-700'>
+          <p className='font-semibold mb-1'>About this data</p>
+          <p>
+            Nutritional values are estimates based on {product.dataSource === 'estimated'
+              ? 'typical recipe calculations'
+              : `${product.dataSource} data`
+            } and may vary between brands, preparation methods and serving sizes.
+            Ratings are based on clinical guidance from the Irish Haemochromatosis Association.
+          </p>
+        </div>
+      )}
+
       {/* category tags — only shown for API products that have them */}
       {product.categories_tags && product.categories_tags.length > 0 && (
         <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6">
