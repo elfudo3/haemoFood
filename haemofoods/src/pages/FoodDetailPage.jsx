@@ -6,12 +6,18 @@ import { getUSDAProduct } from '../services/usdaFoodData'
 import { getCuratedProduct } from '../services/curatedSearch'
 import { getIronRating, getCategoryRating } from '../utils/scoring'
 import { formatIron, formatVitaminC, formatAlcohol } from '../utils/formatting'
+import { SYSTEM_PROMPT } from '../constants/haemoBotPrompt'
 
 export default function FoodDetailPage() {
   const { code } = useParams()
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
+  //stores HaemoBot's clinical interpretation once it arrives
+  const [botReply, setBotReply] = useState(null)
+  //true while waiting for HaemoBot's response
+  const [botLoading, setBotLoading] = useState(false)
 
   useEffect(() => {
     async function fetchProduct() {
@@ -42,6 +48,7 @@ export default function FoodDetailPage() {
 
     fetchProduct()
   }, [code])
+
 
   if (loading) return <p className="text-stone-400">Loading...</p>
   if (error) return <p className="text-red-600">{error}</p>
@@ -83,6 +90,38 @@ export default function FoodDetailPage() {
     off: { label: 'Open Food Facts', style: 'bg-emerald-50 text-emerald-600' },
   }
   const source = sourceConfig[product.source] || sourceConfig.off
+
+  async function askHaemoBot() {
+    setBotLoading(true)
+    setBotReply(null)
+
+    const prompt = `The user is viewing "${product.product_name}" which has ${iron != null ? iron + 'mg' : 'unknown'} iron per 100g and is rated ${rating}. In 2-3 sentences, give a clinical interpretation for a haemochromatosis patient. Is this heme or non-heme iron? Are there any absorption factors (vitamin C, phytates, oxalates, alcohol) relevant to this food?`
+
+    try {
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: '~anthropic/claude-haiku-latest',
+          messages: [
+            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'user', content: prompt },
+          ],
+        }),
+      })
+
+      const data = await response.json()
+      setBotReply(data.choices[0].message.content)
+    } catch (err) {
+      setBotReply('Sorry, I couldn\'t connect to HaemoBot. Try again in a moment')
+    } finally {
+      setBotLoading(false)
+    }
+  }
+
 
   return (
     <div>
@@ -168,10 +207,44 @@ export default function FoodDetailPage() {
         </div>
       )}
 
+      {/* haemobot clinical interpretation */}
+      <div className="p-0.5 rounded-xl bg-gradient-to-br from-pink-500 to-orange-400 mb-6">
+        <div className="bg-white rounded-xl p-4">
+          <div className="flex items-center gap-2 mb-3">
+            <img
+              src="/images/HaemoBot_v1.png"
+              alt="HaemoBot"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <h2 className="font-bold text-stone-900">Ask HaemoBot</h2>
+          </div>
+
+          {botReply && (
+            <p className="text-sm text-stone-700 bg-stone-50 rounded-lg p-3 mb-3">
+              {botReply}
+            </p>
+          )}
+
+          {!botReply && (
+            <button
+              onClick={askHaemoBot}
+              disabled={botLoading}
+              className={`text-sm px-4 py-2 rounded-full font-medium transition-colors ${botLoading
+                  ? 'bg-stone-100 text-stone-400 cursor-not-allowed'
+                  : 'bg-red-700 hover:bg-red-800 text-white'
+                }`}
+            >
+              {botLoading ? 'Asking HaemoBot...' : 'Detailed information on this product'}
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* disclaimer */}
       <div className="bg-stone-100 rounded-lg p-4 text-xs text-stone-400">
         Always consult your dietitian — this tool is a guide, not medical advice.
       </div>
+
     </div>
   )
 }
