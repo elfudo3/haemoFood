@@ -33,6 +33,8 @@ export default function SearchPage() {
   const [loading, setLoading] = useState(false)
   //which source filter is active (all, curated, usda)
   const [activeSource, setActiveSource] = useState('all')
+  //whether banner is whowing or not
+  const [showBanner, setShowBanner] = useState(true)
 
   async function handleSearch() {
     //don't search for empty or very short queries
@@ -77,6 +79,29 @@ export default function SearchPage() {
     <div>
       <h1 className="text-2xl font-bold text-stone-900 mb-6">Search foods</h1>
 
+      {showBanner && (
+        <div className='flex justify-between items-start bg-stone-50 border border-stone-200 rounded-lg p-3 text-sm text-stone-600 mb-4'>
+          <div>
+            {/*Bold intro line*/}
+            <p className='font-medium text-stone-700 mb-1 text-sm'>
+              Search by food name to check its iron safety rating.
+            </p>
+          
+            <p className='text-sm text-stone-600'>
+              Results are rated 🟢 Safe, 🟡 Moderate, or 🔴 Avoid based on Irish Haemochromatosis
+              Association guidelines. We search our curated food database and the USDA database for each query.
+            </p>
+        </div>
+        {/* dismiss button - ml-3 adds gap between text and button */}
+        <button
+          onClick={() => setShowBanner(false)}
+          className='ml-3 text-stone-400 hover:text-stone-600'
+          >x
+          </button>
+          </div>
+      )}
+
+
       {/* search input */}
       <SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
 
@@ -88,9 +113,8 @@ export default function SearchPage() {
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${
-                  activeFilter === filter.value ? 'opacity-100' : 'opacity-50'
-                }`}
+                className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${activeFilter === filter.value ? 'opacity-100' : 'opacity-50'
+                  }`}
               >
                 {filter.label}
               </button>
@@ -102,9 +126,8 @@ export default function SearchPage() {
               <button
                 key={filter.value}
                 onClick={() => setActiveSource(filter.value)}
-                className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${
-                  activeSource === filter.value ? 'opacity-100' : 'opacity-50'
-                }`}
+                className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${activeSource === filter.value ? 'opacity-100' : 'opacity-50'
+                  }`}
               >
                 {filter.label}
               </button>
@@ -113,7 +136,7 @@ export default function SearchPage() {
         </>
       )}
 
-      
+
 
       {loading && (
         <p className="text-stone-400 text-sm mt-6">Searching...</p>

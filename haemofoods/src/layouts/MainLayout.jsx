@@ -36,6 +36,16 @@ export default function MainLayout() {
               Search
             </Link>
             <Link
+              to="/learn"
+              className={`px-4 py-2 rounded-md transition-colors
+                ${location.pathname === '/learn'
+                  ? 'bg-red-100 text-stone-600'
+                  : 'text-stone-600 hover:text-red-700'
+                }`}
+            >
+              Learn
+            </Link>
+            <Link
               to="/about"
               className={`px-4 py-2 rounded-md transition-colors
                 ${location.pathname === '/about'

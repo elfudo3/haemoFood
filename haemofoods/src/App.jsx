@@ -4,7 +4,7 @@ import MainLayout from './layouts/MainLayout'
 import HomePage from './pages/HomePage'
 import SearchPage from './pages/SearchPage'
 import FoodDetailPage from './pages/FoodDetailPage'
-import AboutPage from './pages/AboutPage'
+import LearnPage from './pages/LearnPage'
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/food/:code" element={<FoodDetailPage />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/learn" element={<LearnPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
