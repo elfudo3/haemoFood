@@ -6,30 +6,30 @@ const TEAM = [
         name: 'Jakub Zeman',
         university: 'University of Galway',
         course: 'BSc Computer Science & IT',
-        role: 'Web Developer of HaemoFood, data science & tech support for the team.',
+        role: '"I\'m the Web Developer of HaemoFood, providing data science & tech support for the team."',
         image: '/team/jakub1.jpg', //replace with path like '/images/team/jakub.jpg'
         github: 'https://github.com/elfudo3', //replace with your actual GitHub
     },
     {
         name: 'Emma O\'Keeffe',
         university: 'University of Galway',
-        course: 'course',
-        role: 'Placeholder',
+        course: 'BSc Biomedical Science',
+        role: '"I\'m one of the researchers on our team, ensuring all our information is current and up to date!"',
         image: '/team/emma.jpg',
     },
     {
         name: 'Grace Dawson',
         university: 'UCD',
-        course: 'course',
+        course: 'BSc Cell & Molecular Biology',
         role: 'Placeholder',
         image: '/team/grace.jpg',
     },
     {
         name: 'Lauren Richardson',
         university: 'DCU',
-        course: 'course',
+        course: 'BSc Genetics & Cell Biology',
         role: 'Placeholder',
-        image: null,
+        image: '/team/lauren.jpeg',
     },
 ]
 
@@ -235,7 +235,7 @@ export default function AboutPage() {
 
                     <div className="space-y-3">
                         <a
-                            href="https://www.haemochromatosis-ir.com"
+                            href="https://haemochromatosis.ie/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="block bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors"
