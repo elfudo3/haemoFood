@@ -5,26 +5,30 @@ const TEAM = [
     {
         name: 'Jakub Zeman',
         university: 'University of Galway',
-        role: 'Web Developer of HaemoFood.',
+        course: 'BSc Computer Science & IT',
+        role: 'Web Developer of HaemoFood, data science & tech support for the team.',
         image: '/team/jakub1.jpg', //replace with path like '/images/team/jakub.jpg'
         github: 'https://github.com/elfudo3', //replace with your actual GitHub
     },
     {
-        name: 'Grace Dawson',
-        university: 'UCD',
-        role: 'Placeholder — add a sentence about their role in the research.',
-        image: '/team/grace.jpg',
-    },
-    {
         name: 'Emma O\'Keeffe',
         university: 'University of Galway',
-        role: 'Placeholder — add a sentence about their role in the research.',
+        course: 'course',
+        role: 'Placeholder',
         image: '/team/emma.jpg',
+    },
+    {
+        name: 'Grace Dawson',
+        university: 'UCD',
+        course: 'course',
+        role: 'Placeholder',
+        image: '/team/grace.jpg',
     },
     {
         name: 'Lauren Richardson',
         university: 'DCU',
-        role: 'Placeholder — add a sentence about their role in the research.',
+        course: 'course',
+        role: 'Placeholder',
         image: null,
     },
 ]
@@ -108,7 +112,7 @@ export default function AboutPage() {
                                     />
                                 </div>
                                 <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl p-4">
-                                <img
+                                    <img
                                         src="/images/logos/DCU.png"
                                         alt="DCU"
                                         className="max-h-16 object-contain"
@@ -128,11 +132,11 @@ export default function AboutPage() {
                         {TEAM.map(member => (
                             <div
                                 key={member.name}
-                                className="flex gap-4 items-start bg-stone-50 border border-stone-200 rounded-xl p-4"
+                                className="flex gap-4 items-start bg-stone-50 border border-stone-200 rounded-xl p-4 relative"
                             >
                                 {/* profile image — circular, 64x64 */}
                                 {/* flex-shrink-0 — prevents the circle from squishing when text is long */}
-                                <div className="w-16 h-16 rounded-full bg-stone-200 flex-shrink-0 overflow-hidden">
+                                <div className="w-20 h-20 rounded-full bg-stone-200 flex-shrink-0 overflow-hidden">
                                     {member.image ? (
                                         <img
                                             src={member.image}
@@ -152,6 +156,7 @@ export default function AboutPage() {
                                 <div className="min-w-0">
                                     <h3 className="font-semibold text-stone-900">{member.name}</h3>
                                     <p className="text-xs text-stone-400 mt-0.5">{member.university}</p>
+                                    <p className="text-xs text-stone-400">{member.course}</p>
                                     <p className="text-sm text-stone-600 mt-2 leading-relaxed">{member.role}</p>
 
                                     {/* github link — only shown for members who have one */}
@@ -160,10 +165,14 @@ export default function AboutPage() {
                                             href={member.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1.5 mt-3 text-xs font-medium text-red-600 hover:text-red-700 transition-colors"
+                                            className="absolute top-3 right-3 flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white text-xs font-medium px-3 py-1.5 rounded-full transition-colors"
                                         >
-                                            <span>GitHub</span>
-                                            <span aria-hidden="true">&rarr;</span>
+                                            <img
+                                                src="/images/logos/github.png"
+                                                alt="GitHub"
+                                                className="w-5 h-5 invert"
+                                            />
+                                            <span>github.com/elfudo3</span>
                                         </a>
                                     )}
                                 </div>
