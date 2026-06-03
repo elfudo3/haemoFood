@@ -53,16 +53,23 @@ export default function AboutPage() {
                 <section>
                     <h1 className="text-2xl font-bold text-stone-900 mb-4">About HaemoFood</h1>
                     <p className="text-stone-600 leading-relaxed">
-                        HaemoFood is a dietary safety tool built for people managing hereditary haemochromatosis.
-                        It helps users quickly check whether everyday foods are safe, moderate, or best avoided
-                        based on their iron content and clinical guidelines from the Irish Haemochromatosis
-                        Association. The tool searches both a curated database of clinically rated foods and the
-                        USDA FoodData Central database to give users the most comprehensive results possible.
+                        HaemoFood is more than a search tool — it&apos;s a platform built to raise
+                        awareness about hereditary haemochromatosis and make reliable dietary
+                        guidance accessible to anyone who needs it. 
                     </p>
                     <p className="text-stone-600 leading-relaxed mt-3">
-                        This project was developed as part of the Virtuome 2026 student research programme,
-                        bringing together students from three Irish universities to explore how digital tools
-                        can support people with metabolic conditions.
+                        The site combines three things: a food safety checker backed by clinical
+                        guidelines from the Irish Haemochromatosis Association, an information
+                        guide explaining the science behind iron absorption and dietary management,
+                        and HaemoBot — an AI assistant trained on IHA guidelines that can answer
+                        specific questions about diet and haemochromatosis.
+                    </p>
+                    <p className="text-stone-600 leading-relaxed mt-3">
+                        This project was developed as part of the Virtuome 2026 student research
+                        programme, bringing together students from three Irish universities to
+                        investigate whether patients with hereditary haemochromatosis have access
+                        to the digital tools and dietary resources they actually need. HaemoFood
+                        is one of our answers to that question.
                     </p>
                 </section>
 
@@ -189,7 +196,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* ---------- SECTION 4: How the Search Works ---------- */}
-                <section>
+                <section id="how-it-works" className="scroll-mt-24">
                     <h2 className="text-xl font-bold text-stone-900 mb-4">How the Search Works</h2>
 
                     <div className="space-y-4 text-stone-600 leading-relaxed">
@@ -206,6 +213,39 @@ export default function AboutPage() {
                             For USDA results, iron safety ratings are calculated automatically based on iron
                             content per 100g.
                         </p>
+
+                        {/* IHA methodology — separated into its own highlighted block */}
+                        <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 space-y-3">
+                            <p className="font-semibold text-stone-800">
+                                How we rate foods
+                            </p>
+                            <p>
+                                Our safety ratings are based on the Irish Haemochromatosis
+                                Association&apos;s &quot;Diet &amp; Haemochromatosis&quot; guide
+                                (February 2023), written by Sarah Keogh, Consultant Dietitian,
+                                in association with INDI.
+                            </p>
+                            <p>
+                                The IHA guide distinguishes between two types of dietary iron.
+                                Heme iron, found in meat, poultry, and fish, is absorbed two to
+                                three times more efficiently than non-heme iron, found in eggs,
+                                plants, and fortified foods. This means animal-source foods pose
+                                a greater risk at the same iron level — beef at 2.7mg/100g is
+                                more dangerous than spinach at 2.7mg/100g.
+                            </p>
+                            <p>
+                                Our curated database of 150 common foods uses clinically assigned
+                                ratings that account for iron type, absorption enhancers like
+                                alcohol, and absorption inhibitors like tea, coffee, and calcium.
+                            </p>
+                            <p className="text-sm text-stone-500 italic">
+                                When a food is not in our curated database, we fall back to iron
+                                content per 100g from the USDA FoodData Central database and apply
+                                general thresholds. This numerical fallback does not distinguish
+                                between heme and non-heme iron, so users should treat USDA-sourced
+                                ratings as approximate.
+                            </p>
+                        </div>
 
                         {/* rating explanation cards */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
@@ -229,13 +269,8 @@ export default function AboutPage() {
                             </div>
                         </div>
 
-                        <p className="mt-4">
-                            Curated results always appear first because they carry verified clinical ratings.
-                            When the same food appears in both sources, the curated version takes priority.
-                        </p>
                     </div>
                 </section>
-
                 {/* ---------- SECTION 5: Sources ---------- */}
                 <section>
                     <h2 className="text-xl font-bold text-stone-900 mb-4">Visit Our Sources</h2>

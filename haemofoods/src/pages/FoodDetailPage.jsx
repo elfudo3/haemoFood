@@ -208,7 +208,7 @@ export default function FoodDetailPage() {
       )}
 
       {/* haemobot clinical interpretation */}
-      <div className="p-0.5 rounded-xl bg-gradient-to-br from-pink-500 to-orange-400 mb-6">
+      <div className="p-0.5 rounded-xl bg-gradient-to-br from-pink-500 to-orange-400 mb-6 transition-all duration-200 hover:scale-[1.001] hover:shadow-lg hover:shadow-pink-500/20">
         <div className="bg-white rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <img
@@ -229,9 +229,9 @@ export default function FoodDetailPage() {
             <button
               onClick={askHaemoBot}
               disabled={botLoading}
-              className={`text-sm px-4 py-2 rounded-full font-medium transition-colors ${botLoading
-                  ? 'bg-stone-100 text-stone-400 cursor-not-allowed'
-                  : 'bg-red-700 hover:bg-red-800 text-white'
+              className={`text-sm px-4 py-2 rounded-full font-medium transition-all duration-200 ${botLoading
+                ? 'bg-stone-100 text-stone-400 cursor-not-allowed'
+                : 'bg-gradient-to-br from-pink-500 to-orange-400 text-white focus:ring-4 focus:outline-none focus:ring-pink-300 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-pink-500/20 active:scale-[0.98]'
                 }`}
             >
               {botLoading ? 'Asking HaemoBot...' : 'Detailed information on this product'}

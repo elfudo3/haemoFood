@@ -28,7 +28,7 @@ export default function HomePage() {
         {/* inline-block needed so transform (translateY) works on an inline element */}
         <Link
           to="/search"
-          className="inline-block bg-red-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-800 transition-colors opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.5s]"
+          className="inline-block bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:bg-gradient-to-br text-white px-6 py-3 rounded-lg font-medium focus:ring-4 focus:outline-none focus:ring-red-300 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-900/20 active:scale-[0.98] opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.5s]"
         >
           Search a food
         </Link>

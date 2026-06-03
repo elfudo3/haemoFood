@@ -1,8 +1,8 @@
 //function for simple iron rating 
 export function getIronRating(ironPer100g){
     if (ironPer100g === null || ironPer100g === undefined) return 'unknown'
-    if (ironPer100g <= 1.4) return 'safe'
-    if (ironPer100g > 1.4 && ironPer100g <= 3.5) return 'moderate'
+    if (ironPer100g <= 1.5) return 'safe'
+    if (ironPer100g > 1.5 && ironPer100g <= 3.5) return 'moderate'
     return 'avoid'
 }
 //test passed! - all GREEN

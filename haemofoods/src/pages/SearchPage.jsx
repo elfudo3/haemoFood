@@ -86,92 +86,113 @@ export default function SearchPage() {
             <p className='font-medium text-stone-700 mb-1 text-sm'>
               Search by food name to check its iron safety rating.
             </p>
-          
+
             <p className='text-sm text-stone-600'>
               Results are rated 🟢 Safe, 🟡 Moderate, or 🔴 Avoid based on Irish Haemochromatosis
               Association guidelines. We search our curated food database and the USDA database for each query.
-            </p>
+              {' '}
+            <a
+              href="/about#how-it-works"
+              className="text-red-600 hover:text-red-800 underline underline-offset-2 font-medium transition-colors"
+            >
+              <br></br>
+              Learn how our ratings work 
+            </a>
+          </p>
         </div>
         {/* dismiss button - ml-3 adds gap between text and button */}
-        <button
-          onClick={() => setShowBanner(false)}
-          className='ml-3 text-stone-400 hover:text-stone-600'
-          >x
-          </button>
-          </div>
-      )}
-
-
-      {/* search input */}
-      <SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
-
-      {/* filter buttons — only show after a search */}
-      {hasSearched && results.length > 0 && (
-        <>
-          <div className="flex gap-2 mt-4 flex-wrap">
-            {FILTERS.map(filter => (
-              <button
-                key={filter.value}
-                onClick={() => setActiveFilter(filter.value)}
-                className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${activeFilter === filter.value ? 'opacity-100' : 'opacity-50'
-                  }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex gap-2 mt-2 flex-wrap">
-            {SOURCE_FILTERS.map(filter => (
-              <button
-                key={filter.value}
-                onClick={() => setActiveSource(filter.value)}
-                className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${activeSource === filter.value ? 'opacity-100' : 'opacity-50'
-                  }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-
-
-
-      {loading && (
-        <p className="text-stone-400 text-sm mt-6">Searching...</p>
-      )}
-
-      {/* results count */}
-      {hasSearched && results.length > 0 && (
-        <p className="text-xs text-stone-400 mt-3">
-          {filtered.length} result{filtered.length !== 1 ? 's' : ''}
-          {activeFilter !== 'all' ? ` — ${activeFilter} only` : ''}
-        </p>
-      )}
-
-      {/* results list */}
-      {hasResults && (
-        <div className="flex flex-col gap-3 mt-3">
-          {filtered.map(product => (
-            <FoodCard key={product.code} product={product} />
-          ))}
-        </div>
-      )}
-
-      {/* no results after filtering */}
-      {!loading && hasSearched && results.length > 0 && filtered.length === 0 && (
-        <p className="text-stone-400 text-sm mt-6">
-          No {activeFilter} foods found for "{query}". Try a different filter.
-        </p>
-      )}
-
-      {/* no results at all */}
-      {!loading && hasSearched && results.length === 0 && (
-        <p className="text-stone-400 text-sm mt-6">
-          No foods found for "{query}". Try searching a different term.
-        </p>
-      )}
+      <button
+        onClick={() => setShowBanner(false)}
+        className='ml-3 text-stone-400 hover:text-stone-600'
+      >x
+      </button>
     </div>
+  )
+}
+
+
+{/* search input */ }
+<SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
+
+{/* filter buttons — only show after a search */ }
+{
+  hasSearched && results.length > 0 && (
+    <>
+      <div className="flex gap-2 mt-4 flex-wrap">
+        {FILTERS.map(filter => (
+          <button
+            key={filter.value}
+            onClick={() => setActiveFilter(filter.value)}
+            className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${activeFilter === filter.value ? 'opacity-100' : 'opacity-50'
+              }`}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex gap-2 mt-2 flex-wrap">
+        {SOURCE_FILTERS.map(filter => (
+          <button
+            key={filter.value}
+            onClick={() => setActiveSource(filter.value)}
+            className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-opacity ${filter.style} ${activeSource === filter.value ? 'opacity-100' : 'opacity-50'
+              }`}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+    </>
+  )
+}
+
+
+
+{
+  loading && (
+    <p className="text-stone-400 text-sm mt-6">Searching...</p>
+  )
+}
+
+{/* results count */ }
+{
+  hasSearched && results.length > 0 && (
+    <p className="text-xs text-stone-400 mt-3">
+      {filtered.length} result{filtered.length !== 1 ? 's' : ''}
+      {activeFilter !== 'all' ? ` — ${activeFilter} only` : ''}
+    </p>
+  )
+}
+
+{/* results list */ }
+{
+  hasResults && (
+    <div className="flex flex-col gap-3 mt-3">
+      {filtered.map(product => (
+        <FoodCard key={product.code} product={product} />
+      ))}
+    </div>
+  )
+}
+
+{/* no results after filtering */ }
+{
+  !loading && hasSearched && results.length > 0 && filtered.length === 0 && (
+    <p className="text-stone-400 text-sm mt-6">
+      No {activeFilter} foods found for "{query}". Try a different filter.
+    </p>
+  )
+}
+
+{/* no results at all */ }
+{
+  !loading && hasSearched && results.length === 0 && (
+    <p className="text-stone-400 text-sm mt-6">
+      No foods found for "{query}". Try searching a different term.
+    </p>
+  )
+}
+    </div >
   )
 }
