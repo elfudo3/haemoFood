@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+/*animation: element fades in while sliding up 20px from below */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*animation: element fades in without moving */
+@keyframes fadeIn {
+    from {
+        opacity : 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*animation: background gradient slides left-to-right-to-left in loop*/
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

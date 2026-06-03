@@ -28,9 +28,16 @@ const TEAM = [
         name: 'Lauren Richardson',
         university: 'DCU',
         course: 'BSc Genetics & Cell Biology',
-        role: 'Placeholder',
+        role: '"I am one of the researchers on our team. I have a strong interest in bioinformatics and genomics with the intention of pursuing a career in Medical Therapeutics."',
         image: '/team/lauren.jpeg',
     },
+    {
+        name: 'Neasa Ní Ainiféin',
+        university: 'University of Galway',
+        course: 'course',
+        role: "Placeholder",
+        image: '/team/neasa.jpg'
+    }
 ]
 
 export default function AboutPage() {
@@ -231,44 +238,70 @@ export default function AboutPage() {
 
                 {/* ---------- SECTION 5: Sources ---------- */}
                 <section>
-                    <h2 className="text-xl font-bold text-stone-900 mb-4">Sources</h2>
+                    <h2 className="text-xl font-bold text-stone-900 mb-4">Visit Our Sources</h2>
 
                     <div className="space-y-3">
                         <a
                             href="https://haemochromatosis.ie/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors"
+                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors"
                         >
-                            <p className="font-medium text-stone-900">Irish Haemochromatosis Association</p>
-                            <p className="text-sm text-stone-500 mt-1">
-                                Clinical dietary guidelines for hereditary haemochromatosis patients.
-                            </p>
+                            <div>
+                                <p className="font-medium text-stone-900">Irish Haemochromatosis Association</p>
+                                <p className="text-sm text-stone-500 mt-1">
+                                    Clinical dietary guidelines for hereditary haemochromatosis patients.
+                                </p>
+                            </div>
+                            <span className="text-stone-400 ml-4 text-lg">→</span>
+                        </a>
+
+                        <a
+                            href="/DIET_HAEMO_IRELAND.PDF"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors"
+                        >
+                            <div>
+                                <p className="font-medium text-stone-900">IHA Dietary Guide</p>
+                                <p className="text-sm text-stone-500 mt-1">
+                                    Diet and Haemochromatosis — full dietary guide by Sarah Keogh, Consultant Dietitian (Feb 2023).
+                                </p>
+                            </div>
+                            <span className="text-stone-400 ml-4 text-lg">→</span>
                         </a>
 
                         <a
                             href="https://fdc.nal.usda.gov/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors"
+                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors"
                         >
-                            <p className="font-medium text-stone-900">USDA FoodData Central</p>
-                            <p className="text-sm text-stone-500 mt-1">
-                                Comprehensive food composition database maintained by the U.S. Department of Agriculture.
-                            </p>
+                            <div>
+                                <p className="font-medium text-stone-900">USDA FoodData Central</p>
+                                <p className="text-sm text-stone-500 mt-1">
+                                    Comprehensive food composition database maintained by the U.S. Department of Agriculture.
+                                </p>
+                            </div>
+                            <span className="text-stone-400 ml-4 text-lg">→</span>
                         </a>
 
                         <a
                             href="https://www.vmh.life/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors"
+                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors"
                         >
-                            <p className="font-medium text-stone-900">Virtual Metabolic Human</p>
-                            <p className="text-sm text-stone-500 mt-1">
-                                Database of human and gut microbial metabolism for systems biology research.
-                            </p>
+                            <div>
+                                <p className="font-medium text-stone-900">Virtual Metabolic Human</p>
+                                <p className="text-sm text-stone-500 mt-1">
+                                    Database of human and gut microbial metabolism for systems biology research.
+                                </p>
+                            </div>
+                            <span className="text-stone-400 ml-4 text-lg">→</span>
                         </a>
+
+
                     </div>
 
                     {/* disclaimer */}
@@ -281,7 +314,7 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
