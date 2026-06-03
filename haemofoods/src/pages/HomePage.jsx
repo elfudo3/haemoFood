@@ -7,26 +7,36 @@ export default function HomePage() {
 
       {/* hero section */}
       <div className="text-center pt-16 pb-12 border-b border-stone-200">
-        <h1 className="text-4xl font-bold tracking-tight text-stone-900 mb-6">
+        <h1 className="text-4xl font-bold tracking-tight text-stone-900 mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
           Because knowing your diagnosis
           <br />
-          <span className="text-red-700">is only the beginning.</span>
+
+          {/* [animation-delay:0.15s] — red line appears just after the main heading */}
+          <span className="text-red-700 inline-block opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] [animation-delay:0.15s]">
+            is only the beginning.
+          </span>
         </h1>
-        <p className="text-lg text-stone-500 max-w-lg mx-auto mb-8">
+        {/* [animation-delay:0.3s] — paragraph appears third in the cascade */}
+        <p className="text-lg text-stone-500 max-w-lg mx-auto mb-8 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s]">
           We are a student research group investigating whether Irish patients
           with hereditary haemochromatosis have access to the dietary guidance,
           digital tools, and resources they actually need to manage their
           condition day to day.
         </p>
+
+        {/* [animation-delay:0.5s] — CTA button appears last for visual emphasis */}
+        {/* inline-block needed so transform (translateY) works on an inline element */}
         <Link
           to="/search"
-          className="bg-red-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-800 transition-colors"
+          className="inline-block bg-red-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-800 transition-colors opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.5s]"
         >
           Search a food
         </Link>
       </div>
+
       {/* mission section */}
-      <div className="py-12 border-b border-stone-200">
+      {/* [animation-delay:0.6s] — appears as user's eye reaches this section */}
+      <div className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.6s]">
         <p className="text-sm uppercase tracking-widest text-red-700 mb-2">
           Our Mission
         </p>
@@ -44,7 +54,8 @@ export default function HomePage() {
       </div>
 
       {/* what is haemofood section */}
-      <div className="py-12 border-b border-stone-200">
+      {/* [animation-delay:0.8s] — final section fades in last */}
+      <div className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.8s]">
         <p className="text-sm uppercase tracking-widest text-red-700 mb-2">
           What is HaemoFood
         </p>
