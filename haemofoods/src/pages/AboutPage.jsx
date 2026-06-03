@@ -21,7 +21,7 @@ const TEAM = [
         name: 'Grace Dawson',
         university: 'UCD',
         course: 'BSc Cell & Molecular Biology',
-        role: 'Placeholder',
+        role: '"I am a third-year Cell and Molecular Biology student at University College Dublin with a background in molecular techniques, data analysis, and scientific research. I am passionate about the intersection of biological science and community health, which is what drew me to our project."',
         image: '/team/grace.jpg',
     },
     {
