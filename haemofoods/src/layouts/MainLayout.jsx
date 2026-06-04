@@ -1,10 +1,19 @@
 //main layout wrapper with navbar and footer shared across all pages
 import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import ChatWidget from '../components/ui/ChatWidget'
 
 export default function MainLayout() {
   //get the current URL path so we can highlight the active nav link
   const location = useLocation()
+  //boolean to track whether mobile hamburger menu is open or closed 
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  //auto close mobile menu whenever the user navigates to a new page
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [location.pathname]) //dependency array - runs every time the URL path changes
+
 
   return (
     <div className="min-h-screen flex flex-col bg-stone-50 text-stone-800">
@@ -17,7 +26,7 @@ export default function MainLayout() {
           </Link>
 
           {/* centre — nav links */}
-          <div className="flex gap-6 text-sm font-medium">
+          <div className="hidden md:flex gap-6 text-sm font-medium">
             <Link
               to="/"
               className={`px-4 py-2 rounded-md transition-colors
@@ -60,12 +69,20 @@ export default function MainLayout() {
             </Link>
           </div>
 
+          {/* hamburger button — visible on mobile only, hidden on md screens and up */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)} //toggle open/closed
+            className="md:hidden text-2xl text-stone-600 hover:text-red-700 transition-colors"
+          >
+            {isMenuOpen ? '✕' : '☰'} {/* show X when open, hamburger when closed */}
+          </button>
+
           {/* right — GitHub link */}
           <a
             href="https://github.com/elfudo3/haemoFood"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+            className="hidden md:flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
           >
             <img
               src="/images/logos/github.png"
@@ -76,7 +93,71 @@ export default function MainLayout() {
           </a>
 
         </div>
-      </nav>
+
+        {/* mobile dropdown menu — only renders when hamburger is tapped */}
+        {isMenuOpen && (
+          <div className="md:hidden flex flex-col border-t border-stone-100 px-4 py-2">
+            <Link
+              to="/"
+              className={`py-3 border-b border-stone-100 text-sm font-medium transition-colors
+        ${location.pathname === '/'
+                  ? 'text-red-700'
+                  : 'text-stone-600 hover:text-red-700'
+                }`}
+            >
+              Home
+            </Link>
+            <Link
+              to="/search"
+              className={`py-3 border-b border-stone-100 text-sm font-medium transition-colors
+        ${location.pathname === '/search'
+                  ? 'text-red-700'
+                  : 'text-stone-600 hover:text-red-700'
+                }`}
+            >
+              Search
+            </Link>
+            <Link
+              to="/learn"
+              className={`py-3 border-b border-stone-100 text-sm font-medium transition-colors
+        ${location.pathname === '/learn'
+                  ? 'text-red-700'
+                  : 'text-stone-600 hover:text-red-700'
+                }`}
+            >
+              Learn
+            </Link>
+            <Link
+              to="/about"
+              className={`py-3 border-b border-stone-100 text-sm font-medium transition-colors
+        ${location.pathname === '/about'
+                  ? 'text-red-700'
+                  : 'text-stone-600 hover:text-red-700'
+                }`}
+            >
+              About
+            </Link>
+            {/* github link at the bottom of mobile menu */}
+            <a
+              href="https://github.com/elfudo3/haemoFood"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-red-700 transition-colors py-3"
+            >
+              <img
+                src="/images/logos/github.png"
+                alt="GitHub"
+                className="w-4 h-4" //no invert here — dark icon on light background
+              />
+              GitHub
+            </a>
+          </div>
+        )
+        }
+
+
+
+      </nav >
 
       <main className="flex-1 w-full max-w-3xl mx-auto px-6 py-8">
         {/* outlet renders whichever page matches the current route */}
@@ -88,6 +169,6 @@ export default function MainLayout() {
       </footer>
 
       <ChatWidget />
-    </div>
+    </div >
   )
 }
