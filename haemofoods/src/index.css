@@ -34,3 +34,29 @@
         background-position: 0% 50%;
     }
 }
+
+/* haemobot loading animation — nested rotating ovals */
+.haemobot-loader {
+    width: 25px;
+    height: 12px;
+    border: 2px solid #a8a29e; /* stone-400 — matches the chat theme */
+    box-sizing: border-box;
+    border-radius: 50%;
+    display: grid;
+    animation: haemobot-spin 2s infinite linear;
+  }
+  .haemobot-loader:before,
+  .haemobot-loader:after {
+    content: "";
+    grid-area: 1/1;
+    border: inherit;
+    border-radius: 50%;
+    animation: inherit;
+    animation-duration: 3s;
+  }
+  .haemobot-loader:after {
+    --s: -1;
+  }
+  @keyframes haemobot-spin {
+    100% { transform: rotate(calc(var(--s, 1) * 1turn)); }
+  }

@@ -5,7 +5,13 @@ import { SYSTEM_PROMPT } from '../../constants/haemoBotPrompt'
 
 
 export default function ChatWidget() {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
+
+  //tracks whether user has opened the chat at least once — hides notification dot
+  const [hasOpened, setHasOpened] = useState(false)
+
+  //true while waiting for HaemoBot's API response
+  const [isLoading, setIsLoading] = useState(false)
 
   const [messages, setMessages] = useState([
     {
@@ -61,6 +67,8 @@ export default function ChatWidget() {
     //clear the input field
     setInput('')
 
+    setIsLoading(true)
+
     //call the API and add the bot's reply
     try {
       const reply = await getBotReply(updatedMessages)
@@ -70,6 +78,8 @@ export default function ChatWidget() {
         role: 'assistant',
         content: 'Sorry, I couldn\'t connect. Please try again in a moment.'
       }])
+    } finally {
+      setIsLoading(false) //runs whether try succeeded or catch fired
     }
   }
 
@@ -116,6 +126,8 @@ export default function ChatWidget() {
 
           {/* message list */}
           <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
+            {/* spacer — pushes messages to bottom when few, shrinks to nothing when full */}
+            <div className="mt-auto" />
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -128,6 +140,12 @@ export default function ChatWidget() {
                 {message.content}
               </div>
             ))}
+            {/* loading animation — shows while waiting for bot reply */}
+            {isLoading && (
+              <div className="self-start px-0.01 py-0.01">
+                <div className="haemobot-loader" />
+              </div>
+            )}
             <div ref={bottomRef} />
           </div>
 
@@ -155,9 +173,12 @@ export default function ChatWidget() {
 
       {/* floating button — hidden on mobile when chat is open (fullscreen has its own ✕) */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`p-0.5 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 shadow-lg
-          ${isOpen ? 'hidden md:block' : 'block'  //mobile: hide when open. desktop: always show
+        onClick={() => {
+          setIsOpen(!isOpen)
+          setHasOpened(true)
+        }}
+        className={`relative p-0.5 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 shadow-lg
+          ${isOpen ? 'hidden md:block' : 'block'
           }`}
       >
         <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl overflow-hidden">
@@ -165,6 +186,10 @@ export default function ChatWidget() {
             ? '✕'
             : <img src="/images/HaemoBot_v1.png" alt="HaemoBot" className="w-full h-full object-cover" />
           }
+          {/* notification dot — pulses to hint there's a message waiting */}
+          {!isOpen && !hasOpened && (
+            <span className="absolute top-0 left-0 w-2.5 h-2.5 bg-blue-500 rounded-full animate-ping ring-2 ring-white" />
+          )}
         </div>
       </button>
 
