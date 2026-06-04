@@ -1,4 +1,5 @@
 // floating chat widget — fixed to bottom-right of every page
+// on mobile: opens as fullscreen overlay. on desktop: stays as floating box.
 import { useState, useEffect, useRef } from 'react'
 import { SYSTEM_PROMPT } from '../../constants/haemoBotPrompt'
 
@@ -73,13 +74,23 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    //outer wrapper — fullscreen on mobile when open, bottom-right float on desktop
+    <div className={`fixed z-50 flex flex-col
+      ${isOpen
+        ? 'inset-0 md:inset-auto md:bottom-6 md:right-6 items-stretch md:items-end'
+        : 'bottom-6 right-6 items-end'
+      }`}
+    >
 
-      <div className={`mb-4 p-0.5 rounded-2xl bg-gradient-to-br from-pink-500 to-orange-400 shadow-xl transition-all duration-300 origin-bottom-right ${isOpen
-        ? 'scale-100 opacity-100'
-        : 'scale-0 opacity-0 pointer-events-none'
-        }`}>
-        <div className="w-80 h-96 bg-white rounded-2xl flex flex-col overflow-hidden">
+      {/* chat panel — the gradient border wrapper */}
+      <div className={`flex-1 md:flex-none md:mb-4 transition-all duration-300 origin-bottom-right
+        ${isOpen
+          ? 'scale-100 opacity-100 p-0 md:p-0.5 rounded-none md:rounded-2xl bg-gradient-to-br md:from-pink-500 md:to-orange-400 md:shadow-xl'
+          : 'scale-0 opacity-0 pointer-events-none p-0.5 rounded-2xl bg-gradient-to-br from-pink-500 to-orange-400 shadow-xl'
+        }`}
+      >
+        {/* chat box — fullscreen on mobile, fixed size on desktop */}
+        <div className="w-full h-full md:w-80 md:h-96 bg-white md:rounded-2xl flex flex-col overflow-hidden">
 
           {/* header */}
           <div className="bg-red-100 px-4 py-3 flex items-center justify-between">
@@ -94,6 +105,7 @@ export default function ChatWidget() {
                 <p className="text-black-500 text-xs">Haemochromatosis dietary assistant</p>
               </div>
             </div>
+            {/* close button — always visible on mobile, visible on desktop too */}
             <button
               onClick={() => setIsOpen(false)}
               className="bg-red-100 hover:text-white text-lg leading-none"
@@ -139,17 +151,19 @@ export default function ChatWidget() {
 
         </div>
       </div>
-      
 
-      {/* floating button */}
+
+      {/* floating button — hidden on mobile when chat is open (fullscreen has its own ✕) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-0.5 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 shadow-lg"
+        className={`p-0.5 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 shadow-lg
+          ${isOpen ? 'hidden md:block' : 'block'  //mobile: hide when open. desktop: always show
+          }`}
       >
         <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl overflow-hidden">
           {isOpen
             ? '✕'
-            : <img src="/images/HaemoBot_v1.png" alt="HaemoBot" className="w-full h-full object=cover" />
+            : <img src="/images/HaemoBot_v1.png" alt="HaemoBot" className="w-full h-full object-cover" />
           }
         </div>
       </button>
