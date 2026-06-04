@@ -34,8 +34,8 @@ const TEAM = [
     {
         name: 'Neasa Ní Ainiféin',
         university: 'University of Galway',
-        course: 'course',
-        role: "Placeholder",
+        course: 'BSc Biomedical Science',
+        role: '"I have a particular interest in pharmacology, human health and disease research."',
         image: '/team/neasa.jpg'
     }
 ]

@@ -160,7 +160,7 @@ export default function LearnPage() {
         {/* enhancers */}
         <div className="rounded-xl border border-red-200 bg-red-50 p-5 mb-4">
           <p className="font-semibold text-red-800 mb-3">
-            🔺 Enhancers — increase iron absorption
+             Enhancers — increase iron absorption
           </p>
           <div className="space-y-2 text-sm text-red-700">
             <p>
@@ -189,7 +189,7 @@ export default function LearnPage() {
         {/* inhibitors */}
         <div className="rounded-xl border border-green-200 bg-green-50 p-5">
           <p className="font-semibold text-green-800 mb-3">
-            🔻 Inhibitors — reduce iron absorption
+             Inhibitors — reduce iron absorption
           </p>
           <div className="space-y-2 text-sm text-green-700">
             <p>
