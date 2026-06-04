@@ -1,7 +1,111 @@
 // floating chat widget — fixed to bottom-right of every page
-// on mobile: opens as fullscreen overlay. on desktop: stays as floating box.
+// on mobile: opens as fullscreen overlay using visualViewport API
+// on desktop: stays as floating box in bottom-right corner
 import { useState, useEffect, useRef } from 'react'
 import { SYSTEM_PROMPT } from '../../constants/haemoBotPrompt'
+
+
+//separate component for mobile chat — uses visualViewport API
+//to stay pinned to the actual visible screen area even when keyboard opens
+function MobileChat({ messages, input, setInput, isLoading, handleSend, setIsOpen, bottomRef }) {
+  const containerRef = useRef(null)
+
+  //listen to visualViewport resize/scroll events and adjust container
+  //to match the actual visible area — keyboard-proof
+  useEffect(() => {
+    const viewport = window.visualViewport
+    if (!viewport || !containerRef.current) return
+
+    function handleResize() {
+      const container = containerRef.current
+      if (!container) return
+      //set height to exactly what's visible (excludes keyboard)
+      container.style.height = `${viewport.height}px`
+      //offset from top in case browser chrome scrolls the viewport
+      container.style.top = `${viewport.offsetTop}px`
+    }
+
+    //run once immediately to set initial size
+    handleResize()
+
+    viewport.addEventListener('resize', handleResize)
+    viewport.addEventListener('scroll', handleResize)
+
+    return () => {
+      viewport.removeEventListener('resize', handleResize)
+      viewport.removeEventListener('scroll', handleResize)
+    }
+  }, [])
+
+  return (
+    <div
+      ref={containerRef}
+      className="fixed left-0 right-0 z-50 flex flex-col bg-white md:hidden"
+    >
+      {/* header */}
+      <div className="bg-red-100 px-4 py-3 flex items-center justify-between shrink-0">
+        <div className="flex items-center gap-2">
+          <img
+            src="/images/HaemoBot_v1.png"
+            alt="HaemoBot"
+            className="w-8 h-8 rounded-full object-cover"
+          />
+          <div>
+            <p className="text-stone-800 font-bold text-sm">HaemoBot</p>
+            <p className="text-black-500 text-xs">Haemochromatosis dietary assistant</p>
+          </div>
+        </div>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="bg-red-100 hover:text-stone-500 text-lg leading-none"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* message list — flex-1 takes all remaining space, scrolls independently */}
+      <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
+        <div className="mt-auto" />
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={`text-sm rounded-2xl px-3 py-2 max-w-[80%]
+              ${message.role === 'user'
+                ? 'bg-red-700 text-white self-end rounded-br-sm'
+                : 'bg-stone-100 text-stone-800 self-start rounded-bl-sm'
+              }`}
+          >
+            {message.content}
+          </div>
+        ))}
+        {isLoading && (
+          <div className="self-start px-1 py-1">
+            <div className="haemobot-loader" />
+          </div>
+        )}
+        <div ref={bottomRef} />
+      </div>
+
+      {/* input bar — shrink-0 keeps it pinned at bottom, never squashed */}
+      <div className="p-2 border-t border-stone-200 flex gap-2 shrink-0">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+          placeholder="Ask about haemochromatosis..."
+          className="flex-1 text-sm bg-stone-100 rounded-full px-3 py-2 outline-none focus:ring-2 focus:ring-red-300"
+        />
+        <button
+          onClick={handleSend}
+          className="w-8 h-8 bg-gradient-to-br from-pink-500 to-orange-400 text-white rounded-full flex items-center justify-center text-sm shrink-0"
+        >
+          ↑
+        </button>
+      </div>
+    </div>
+  )
+}
 
 
 export default function ChatWidget() {
@@ -92,72 +196,15 @@ export default function ChatWidget() {
     <>
       {/* ========== MOBILE FULLSCREEN OVERLAY ========== */}
       {isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex flex-col bg-white md:hidden"
-          style={{ height: '100dvh' }}
-        >
-          {/* header */}
-          <div className="bg-red-100 px-4 py-3 flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-2">
-              <img
-                src="/images/HaemoBot_v1.png"
-                alt="HaemoBot"
-                className="w-8 h-8 rounded-full object-cover"
-              />
-              <div>
-                <p className="text-stone-800 font-bold text-sm">HaemoBot</p>
-                <p className="text-black-500 text-xs">Haemochromatosis dietary assistant</p>
-              </div>
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="bg-red-100 hover:text-stone-500 text-lg leading-none"
-            >
-              ✕
-            </button>
-          </div>
-
-          {/* message list */}
-          <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
-            <div className="mt-auto" />
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`text-sm rounded-2xl px-3 py-2 max-w-[80%]
-                  ${message.role === 'user'
-                    ? 'bg-red-700 text-white self-end rounded-br-sm'
-                    : 'bg-stone-100 text-stone-800 self-start rounded-bl-sm'
-                  }`}
-              >
-                {message.content}
-              </div>
-            ))}
-            {isLoading && (
-              <div className="self-start px-1 py-1">
-                <div className="haemobot-loader" />
-              </div>
-            )}
-            <div ref={bottomRef} />
-          </div>
-
-          {/* input bar */}
-          <div className="p-2 border-t border-stone-200 flex gap-2 shrink-0">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Ask about haemochromatosis..."
-              className="flex-1 text-sm bg-stone-100 rounded-full px-3 py-2 outline-none focus:ring-2 focus:ring-red-300"
-            />
-            <button
-              onClick={handleSend}
-              className="w-8 h-8 bg-gradient-to-br from-pink-500 to-orange-400 text-white rounded-full flex items-center justify-center text-sm shrink-0"
-            >
-              ↑
-            </button>
-          </div>
-        </div>
+        <MobileChat
+          messages={messages}
+          input={input}
+          setInput={setInput}
+          isLoading={isLoading}
+          handleSend={handleSend}
+          setIsOpen={setIsOpen}
+          bottomRef={bottomRef}
+        />
       )}
 
       {/* ========== DESKTOP FLOATING CHAT ========== */}
