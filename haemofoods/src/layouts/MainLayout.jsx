@@ -58,6 +58,16 @@ export default function MainLayout() {
               Learn
             </Link>
             <Link
+              to="/diet-plan"
+              className={`px-4 py-2 rounded-md transition-colors
+                ${location.pathname === '/diet-plan'
+                  ? 'bg-red-100 text-stone-600'
+                  : 'text-stone-600 hover:text-red-700'
+                }`}
+            >
+              Diet Plan
+            </Link>
+            <Link
               to="/about"
               className={`px-4 py-2 rounded-md transition-colors
                 ${location.pathname === '/about'

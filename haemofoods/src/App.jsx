@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage'
 import FoodDetailPage from './pages/FoodDetailPage'
 import LearnPage from './pages/LearnPage'
 import AboutPage from './pages/AboutPage'
+import DietPlanPage from './pages/DietPlanPage'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/food/:code" element={<FoodDetailPage />} />
           <Route path="/learn" element={<LearnPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/diet-plan" element={<DietPlanPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
