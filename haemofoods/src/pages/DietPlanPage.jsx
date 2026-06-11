@@ -248,23 +248,134 @@ export default function DietPlanPage() {
             )}
 
             {activeTab === 'meals' && (
-                <div>
-                    <h2 className="text-lg font-semibold text-stone-800">Meal Plans</h2>
-                    <p className="text-sm text-stone-500 mt-1">Meal Plans content coming soon.</p>
+                <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]">
+                    <h2 className="text-lg font-semibold text-stone-800">Sample daily meal plans</h2>
+                    <p className="text-sm text-stone-500 mt-1 mb-4">
+                        Example meal plans tailored to your sex and life stage. These are guides, not prescriptions.
+                    </p>
+
+                    {/* sex toggle — reuses selectedSex state from overview */}
+                    <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+                        {SEX_OPTIONS.map((option) => (
+                            <button
+                                key={option.id}
+                                onClick={() => setSelectedSex(option.id)}
+                                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]
+            ${selectedSex === option.id
+                                        ? 'bg-stone-800 text-white'
+                                        : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
+                                    }`}
+                            >
+                                {option.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* meal cards */}
+                    <div className="grid grid-cols-1 gap-4">
+                        {MEALS[selectedSex].map((meal) => (
+                            <div
+                                key={meal.time}
+                                className={`rounded-xl border p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]
+            ${meal.time === 'Note' || meal.time === 'Important'
+                                        ? 'bg-amber-50 border-amber-200'
+                                        : 'bg-stone-50 border-stone-200'
+                                    }`}
+                            >
+                                {/* time badge */}
+                                <span className={`inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2
+            ${meal.time === 'Note' || meal.time === 'Important'
+                                        ? 'bg-amber-200 text-amber-800'
+                                        : 'bg-stone-200 text-stone-600'
+                                    }`}
+                                >
+                                    {meal.time}
+                                </span>
+
+                                {/* meal name */}
+                                <h3 className="text-sm font-semibold text-stone-800">{meal.name}</h3>
+
+                                {/* description */}
+                                <p className="text-xs text-stone-500 mt-2 leading-relaxed">{meal.desc}</p>
+
+                                {/* pill tags */}
+                                <div className="flex flex-wrap gap-1.5 mt-3">
+                                    {meal.pills.map((pill) => (
+                                        <span
+                                            key={pill}
+                                            className="text-xs bg-white border border-stone-200 text-stone-600 px-2 py-0.5 rounded-full"
+                                        >
+                                            {pill}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
 
             {activeTab === 'timing' && (
-                <div>
-                    <h2 className="text-lg font-semibold text-stone-800">Timing Guide</h2>
-                    <p className="text-sm text-stone-500 mt-1">Timing Guide content coming soon.</p>
+                <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]">
+                    <h2 className="text-lg font-semibold text-stone-800">Timing guide</h2>
+                    <p className="text-sm text-stone-500 mt-1 mb-4">
+                        When you eat matters as much as what you eat. These timing strategies can reduce iron absorption.
+                    </p>
+
+                    <div className="grid grid-cols-1 gap-3">
+                        {[
+                            { icon: '☕', title: 'Tea or coffee with meals', text: 'Polyphenols in tea and coffee reduce iron absorption by up to 60%. Drink a cup with or immediately after meals containing iron.' },
+                            { icon: '🥛', title: 'Calcium with iron-rich meals', text: 'Calcium inhibits both haem and non-haem iron absorption. A glass of milk or a serving of cheese alongside a meal helps reduce the iron your body takes in.' },
+                            { icon: '🍊', title: 'Avoid vitamin C with iron-rich foods', text: 'Vitamin C dramatically increases iron absorption. Avoid orange juice, citrus fruits, and vitamin C supplements at mealtimes. Save fruit for snacks between meals.' },
+                            { icon: '⏰', title: 'Space iron-rich foods apart', text: 'If you eat a higher-iron meal at lunch, choose a low-iron option for dinner. Spreading intake across the day gives your body less iron to absorb at once.' },
+                            { icon: '🍷', title: 'Avoid alcohol with meals', text: 'Alcohol increases iron absorption and causes liver damage independently. If you drink, do so away from iron-rich meals and stay within recommended limits.' },
+                        ].map((tip) => (
+                            <div key={tip.title} className="flex gap-4 items-start bg-stone-50 border border-stone-200 rounded-xl p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
+                                <span className="text-2xl flex-shrink-0">{tip.icon}</span>
+                                <div>
+                                    <h3 className="text-sm font-semibold text-stone-800">{tip.title}</h3>
+                                    <p className="text-xs text-stone-500 mt-1 leading-relaxed">{tip.text}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
 
             {activeTab === 'special' && (
-                <div>
-                    <h2 className="text-lg font-semibold text-stone-800">Special Considerations</h2>
-                    <p className="text-sm text-stone-500 mt-1">Special Considerations content coming soon.</p>
+                <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]">
+                    <h2 className="text-lg font-semibold text-stone-800">Special considerations</h2>
+                    <p className="text-sm text-stone-500 mt-1 mb-4">
+                        Important dietary factors for specific groups and situations.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {[
+                            { icon: '🤰', title: 'Pregnancy', text: 'Pregnant women with haemochromatosis should work closely with their medical team. Iron requirements change during pregnancy and standard HH dietary advice may not apply. Never restrict iron during pregnancy without medical guidance.' },
+                            { icon: '👶', title: 'Children and teenagers', text: 'Children with HH need iron for growth and brain development. Dietary restrictions should be minimal and always supervised by a paediatric dietitian. Focus on avoiding offal and iron supplements, not broad restriction.' },
+                            { icon: '🍺', title: 'Alcohol', text: 'Alcohol increases iron absorption and independently damages the liver — a double risk for HH patients. Cider is particularly high in iron. If you drink, limit intake and never drink with iron-rich meals.' },
+                            { icon: '💊', title: 'Supplements', text: 'Never take iron supplements without medical supervision. Avoid multivitamins containing iron. High-dose vitamin C supplements dramatically increase iron absorption and should be avoided.' },
+                            { icon: '🐚', title: 'Raw shellfish', text: 'People with iron overload are at increased risk of Vibrio vulnificus infection from raw or undercooked shellfish. This can cause serious illness. Always cook shellfish thoroughly.' },
+                            { icon: '🥣', title: 'Fortified foods', text: 'Many breakfast cereals and breads are fortified with iron. Check labels and choose unfortified alternatives where possible. Fortified cereals can contain 4mg+ of iron per serving.' },
+                            { icon: '🧃', title: 'Fruit juice', text: 'Limit fruit juice to a maximum of 150ml per day. Fructose increases iron absorption, and the vitamin C content further enhances uptake. Whole fruit is always a better choice.' },
+                            { icon: '🩸', title: 'Venesection periods', text: 'During active venesection treatment, your doctor may adjust dietary advice. Some patients are temporarily advised to eat more iron-rich foods to maintain energy between treatments. Always follow your medical team\'s guidance.' },
+                        ].map((item) => (
+                            <div key={item.title} className="bg-stone-50 border border-stone-200 rounded-xl p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
+                                <div className="text-2xl mb-2">{item.icon}</div>
+                                <h3 className="text-sm font-semibold text-stone-800 mb-1">{item.title}</h3>
+                                <p className="text-xs text-stone-500 leading-relaxed">{item.text}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* disclaimer */}
+                    <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                        <p className="text-sm text-amber-800">
+                            <span className="font-semibold">Medical disclaimer:</span> This dietary plan is based on
+                            the Irish Haemochromatosis Association guidelines and is intended for educational purposes only.
+                            Always consult your doctor or dietitian before making dietary changes.
+                        </p>
+                    </div>
                 </div>
             )}
         </div>
