@@ -1,5 +1,8 @@
 //about page — project info, team, methodology, sources
 
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
+
 const TEAM = [
     {
         name: 'Jakub Zeman',
@@ -45,6 +48,22 @@ const TEAM = [
 ]
 
 export default function AboutPage() {
+
+    //useLocation gives us the current URL info including the #hash
+    const location = useLocation()
+
+    //scroll to the hash target after the page renders
+    useEffect(() => {
+        if (location.hash) {
+            //strip the # to get the element id
+            const id = location.hash.replace('#', '')
+            const el = document.getElementById(id)
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' })
+            }
+        }
+    }, [location.hash]) //re-runs whenever the hash changes
+
     return (
         //max-w-3xl — caps content width so lines don't stretch too wide
         //mx-auto — centres the content block horizontally

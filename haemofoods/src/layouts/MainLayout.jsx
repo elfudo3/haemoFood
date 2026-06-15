@@ -138,6 +138,16 @@ export default function MainLayout() {
               Learn
             </Link>
             <Link
+              to="/diet-plan"
+              className={`py-3 border-b border-stone-100 text-sm font-medium transition-colors
+        ${location.pathname === '/diet-plan'
+                   ? 'text-red-700'
+                   : 'text-stone-600 hover:text-red-700' 
+                 }`} 
+            > 
+            Diet Plan
+            </Link>
+            <Link
               to="/about"
               className={`py-3 border-b border-stone-100 text-sm font-medium transition-colors
         ${location.pathname === '/about'
