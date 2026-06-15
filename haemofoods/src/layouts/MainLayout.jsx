@@ -21,8 +21,12 @@ export default function MainLayout() {
         <div className="max-w-3xl mx-auto flex items-center justify-between">
 
           {/* left — logo */}
-          <Link to="/" className="text-xl font-bold tracking-tight text-red-700">
-            Haemo<span className="text-stone-800">Food</span>
+          <Link to="/">
+            <img
+              src="/images/logos/HaemoFood_logo.png"
+              alt="HaemoFood"
+              className="h-25 w-auto translate-x-[-10px] translate-y-[-6px]" //h-8 = 32px tall, w-auto keeps aspect ratio
+            />
           </Link>
 
           {/* centre — nav links */}
@@ -141,11 +145,11 @@ export default function MainLayout() {
               to="/diet-plan"
               className={`py-3 border-b border-stone-100 text-sm font-medium transition-colors
         ${location.pathname === '/diet-plan'
-                   ? 'text-red-700'
-                   : 'text-stone-600 hover:text-red-700' 
-                 }`} 
-            > 
-            Diet Plan
+                  ? 'text-red-700'
+                  : 'text-stone-600 hover:text-red-700'
+                }`}
+            >
+              Diet Plan
             </Link>
             <Link
               to="/about"
