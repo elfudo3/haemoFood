@@ -1,4 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+
 @import "tailwindcss";
+
+@theme {
+    --font-logo: "Darumadrop One", cursive;
+}
+
+@layer base {
+
+    h1,
+    h2,
+    h3 {
+        font-family: var(--font-logo);
+    }
+}
 
 /*animation: element fades in while sliding up 20px from below */
 @keyframes fadeInUp {
@@ -6,6 +21,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -15,8 +31,9 @@
 /*animation: element fades in without moving */
 @keyframes fadeIn {
     from {
-        opacity : 0;
+        opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -27,9 +44,11 @@
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -39,24 +58,30 @@
 .haemobot-loader {
     width: 25px;
     height: 12px;
-    border: 2px solid #a8a29e; /* stone-400 — matches the chat theme */
+    border: 2px solid #a8a29e;
+    /* stone-400 — matches the chat theme */
     box-sizing: border-box;
     border-radius: 50%;
     display: grid;
     animation: haemobot-spin 2s infinite linear;
-  }
-  .haemobot-loader:before,
-  .haemobot-loader:after {
+}
+
+.haemobot-loader:before,
+.haemobot-loader:after {
     content: "";
     grid-area: 1/1;
     border: inherit;
     border-radius: 50%;
     animation: inherit;
     animation-duration: 3s;
-  }
-  .haemobot-loader:after {
+}
+
+.haemobot-loader:after {
     --s: -1;
-  }
-  @keyframes haemobot-spin {
-    100% { transform: rotate(calc(var(--s, 1) * 1turn)); }
-  }
+}
+
+@keyframes haemobot-spin {
+    100% {
+        transform: rotate(calc(var(--s, 1) * 1turn));
+    }
+}

@@ -78,7 +78,7 @@ export default function SearchPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-stone-900 mb-6">Search foods</h1>
+      <h1 className="text-2xl text-stone-900 mb-6">Search foods</h1>
 
       {showBanner && (
         <div className='flex justify-between items-start bg-stone-50 border border-stone-200 rounded-lg p-3 text-sm text-stone-600 mb-4'>

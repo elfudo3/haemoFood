@@ -37,7 +37,7 @@ export default function HomePage() {
       {/* mission section */}
       {/* [animation-delay:0.6s] — appears as user's eye reaches this section */}
       <div className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.6s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">
           Our Mission
         </p>
         <h2 className="text-2xl font-bold text-stone-900 mb-4">
@@ -56,7 +56,7 @@ export default function HomePage() {
       {/* what is haemofood section */}
       {/* [animation-delay:0.8s] — final section fades in last */}
       <div className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.8s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">
           What is HaemoFood
         </p>
         <h2 className="text-2xl font-bold text-stone-900 mb-4">

@@ -76,7 +76,7 @@ export default function AboutPage() {
                 {/* ---------- SECTION 1: About HaemoFood ---------- */}
                 {/* fadeInUp — slides up + fades in, no delay (first element) */}
                 <section className="opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
-                    <h1 className="text-2xl md:text-3xl font-bold text-stone-900 mb-4">About HaemoFood</h1>
+                    <h1 className="text-2xl md:text-3xl text-stone-900 mb-4">About HaemoFood</h1>
                     <p className="text-stone-600 leading-relaxed">
                         HaemoFood is more than a search tool — it&apos;s a platform built to raise
                         awareness about hereditary haemochromatosis and make reliable dietary
@@ -101,7 +101,7 @@ export default function AboutPage() {
                 {/* ---------- SECTION 2: Our Partners ---------- */}
                 {/* fadeIn — fades in without sliding, staggered 0.15s after section 1 */}
                 <section className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] [animation-delay:0.15s]">
-                    <h2 className="text-xl font-bold text-stone-900 mb-6">Our Partners</h2>
+                    <h2 className="text-xl text-stone-900 mb-6">Our Partners</h2>
 
                     {/* two rows: associations then universities */}
                     <div className="space-y-8">
@@ -166,7 +166,7 @@ export default function AboutPage() {
                 {/* ---------- SECTION 3: Research Team ---------- */}
                 {/* fadeIn staggered 0.3s */}
                 <section className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] [animation-delay:0.3s] relative z-10">
-                    <h2 className="text-xl font-bold text-stone-900 mb-6">Research Team</h2>
+                    <h2 className="text-xl text-stone-900 mb-6">Research Team</h2>
 
                     {/* team grid — single column, cards stack vertically */}
                     <div className="grid grid-cols-1 gap-5">
@@ -198,7 +198,7 @@ export default function AboutPage() {
                                 {/* min-w-0 — prevents text from overflowing the flex container */}
                                 {/* text-center on mobile, left-aligned on sm+ */}
                                 <div className="min-w-0 text-center sm:text-left">
-                                    <h3 className="font-semibold text-stone-900">{member.name}</h3>
+                                    <p className="font-bold text-stone-900">{member.name}</p>
                                     <p className="text-xs text-stone-400 mt-0.5">{member.university}</p>
                                     <p className="text-xs text-stone-400">{member.course}</p>
                                     <p className="text-sm text-stone-600 mt-2 leading-relaxed">{member.role}</p>
@@ -246,7 +246,7 @@ export default function AboutPage() {
                 {/* fadeIn staggered 0.45s */}
                 {/* scroll-mt-24 offsets the scroll target so heading isn't hidden behind sticky navbar */}
                 <section id="how-it-works" className="scroll-mt-24 opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] [animation-delay:0.45s]">
-                    <h2 className="text-xl font-bold text-stone-900 mb-4">How the Search Works</h2>
+                    <h2 className="text-xl text-stone-900 mb-4">How the Search Works</h2>
 
                     <div className="space-y-4 text-stone-600 leading-relaxed">
                         <p>
@@ -265,7 +265,7 @@ export default function AboutPage() {
 
                         {/* IHA methodology — separated into its own highlighted block */}
                         <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 space-y-3">
-                            <p className="font-semibold text-stone-800">
+                            <p className="font-logo text-stone-800">
                                 How we rate foods
                             </p>
                             <p>
@@ -324,7 +324,7 @@ export default function AboutPage() {
                 {/* ---------- SECTION 5: Sources ---------- */}
                 {/* fadeIn staggered 0.6s */}
                 <section className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] [animation-delay:0.6s]">
-                    <h2 className="text-xl font-bold text-stone-900 mb-4">Visit Our Sources</h2>
+                    <h2 className="text-xl text-stone-900 mb-4">Visit Our Sources</h2>
 
                     <div className="space-y-3">
                         <a

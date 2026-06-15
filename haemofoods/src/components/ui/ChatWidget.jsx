@@ -51,7 +51,7 @@ function MobileChat({ messages, input, setInput, isLoading, handleSend, setIsOpe
             className="w-8 h-8 rounded-full object-cover"
           />
           <div>
-            <p className="text-stone-800 font-bold text-sm">HaemoBot</p>
+            <p className="font-logo text-stone-800 font-bold text-sm">HaemoBot</p>
             <p className="text-black-500 text-xs">Haemochromatosis dietary assistant</p>
           </div>
         </div>
@@ -226,7 +226,7 @@ export default function ChatWidget() {
                   className="w-8 h-8 rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-stone-800 font-bold text-sm">HaemoBot</p>
+                  <p className="font-logo text-stone-800 text-sm">HaemoBot</p>
                   <p className="text-black-500 text-xs">Haemochromatosis dietary assistant</p>
                 </div>
               </div>

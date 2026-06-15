@@ -5,7 +5,7 @@ export default function LearnPage() {
 
       {/* hero — matches HomePage stagger pattern */}
       <div className="text-center pt-16 pb-12 border-b border-stone-200">
-        <h1 className="text-4xl font-bold tracking-tight text-stone-900 mb-4 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+        <h1 className="text-4xl tracking-tight text-stone-900 mb-4 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
           Understanding
           <br />
           <span className="text-red-700 inline-block opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] [animation-delay:0.15s]">
@@ -20,8 +20,8 @@ export default function LearnPage() {
 
       {/* ===== SECTION 1: What is Haemochromatosis ===== */}
       <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.5s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">The Condition</p>
-        <h2 className="text-2xl font-bold text-stone-900 mb-4">What is Haemochromatosis?</h2>
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">The Condition</p>
+        <h2 className="text-2xl text-stone-900 mb-4">What is Haemochromatosis?</h2>
 
         <p className="text-stone-600 leading-relaxed mb-4">
           A healthy person typically absorbs 1–2mg of iron from food each day. People with
@@ -96,8 +96,8 @@ export default function LearnPage() {
 
       {/* ===== SECTION 2: Two Types of Iron ===== */}
       <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.6s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">Diet &amp; Iron</p>
-        <h2 className="text-2xl font-bold text-stone-900 mb-4">Not all iron is equal</h2>
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Diet &amp; Iron</p>
+        <h2 className="text-2xl text-stone-900 mb-4">Not all iron is equal</h2>
 
         <p className="text-stone-600 leading-relaxed mb-4">
           There are two types of dietary iron, and your body handles them very differently.
@@ -145,8 +145,8 @@ export default function LearnPage() {
 
       {/* ===== SECTION 3: Enhancers and Inhibitors ===== */}
       <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.7s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">What You Eat With It Matters</p>
-        <h2 className="text-2xl font-bold text-stone-900 mb-4">Iron enhancers and inhibitors</h2>
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">What You Eat With It Matters</p>
+        <h2 className="text-2xl text-stone-900 mb-4">Iron enhancers and inhibitors</h2>
 
         <p className="text-stone-600 leading-relaxed mb-6">
           Beyond the iron content of a food itself, other foods eaten at the same meal
@@ -226,8 +226,8 @@ export default function LearnPage() {
 
       {/* ===== SECTION 4: Alcohol ===== */}
       <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.8s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">Important Warning</p>
-        <h2 className="text-2xl font-bold text-stone-900 mb-4">Alcohol and haemochromatosis</h2>
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Important Warning</p>
+        <h2 className="text-2xl text-stone-900 mb-4">Alcohol and haemochromatosis</h2>
 
         <p className="text-stone-600 leading-relaxed mb-4">
           Alcohol is a particular concern for people with haemochromatosis for three reasons:
@@ -268,8 +268,8 @@ export default function LearnPage() {
 
       {/* ===== SECTION 5: Raw Shellfish ===== */}
       <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.9s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">Food Safety</p>
-        <h2 className="text-2xl font-bold text-stone-900 mb-4">Raw shellfish warning</h2>
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Food Safety</p>
+        <h2 className="text-2xl text-stone-900 mb-4">Raw shellfish warning</h2>
 
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-5">
           <p className="text-stone-700 leading-relaxed">
@@ -285,8 +285,8 @@ export default function LearnPage() {
 
       {/* ===== SECTION 6: Daily Iron Needs ===== */}
       <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:1.0s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">How Much Is Enough</p>
-        <h2 className="text-2xl font-bold text-stone-900 mb-4">You still need iron</h2>
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">How Much Is Enough</p>
+        <h2 className="text-2xl text-stone-900 mb-4">You still need iron</h2>
 
         <p className="text-stone-600 leading-relaxed mb-4">
           Iron is an essential nutrient — even for people with haemochromatosis. It plays
@@ -332,8 +332,8 @@ export default function LearnPage() {
 
       {/* ===== REFERENCES ===== */}
       <section className="py-12 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:1.1s]">
-        <p className="text-sm uppercase tracking-widest text-red-700 mb-2">Sources</p>
-        <h2 className="text-2xl font-bold text-stone-900 mb-4">References</h2>
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Sources</p>
+        <h2 className="text-2xl text-stone-900 mb-4">References</h2>
 
         <p className="text-sm text-stone-500 mb-4">
           All content on this page is based on the Irish Haemochromatosis

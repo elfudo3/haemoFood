@@ -35,7 +35,7 @@ export default function DietPlanPage() {
         <div className='max-w-4xl mx-auto px-4 py-10'>
 
             {/* page heading — fadeInUp, no delay */}
-            <h1 className="text-2xl md:text-3xl font-bold text-stone-800 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+            <h1 className="text-2xl md:text-3xl text-stone-800 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
                 Dietary Management Plan
             </h1>
 
@@ -66,7 +66,7 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg font-semibold text-stone-800">Your daily iron targets</h2>
+                        <h2 className="text-lg text-stone-800">Your daily iron targets</h2>
                         <p className="text-sm text-stone-500 mt-1 mb-4">
                             The amount of iron you need depends on your age, sex, and stage of life.
                         </p>
@@ -167,7 +167,7 @@ export default function DietPlanPage() {
 
                     {/* key principles — fadeInUp, staggered 0.7s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s]">
-                        <h3 className="text-base font-semibold text-stone-800 mb-3">Key principles</h3>
+                        <h3 className="text-base text-stone-800 mb-3">Key principles</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {[
                                 { icon: '✅', title: 'Do not cut out iron entirely', text: 'Your body still needs iron for red blood cells, brain function, and energy. The goal is to manage iron, not eliminate it.' },
@@ -191,7 +191,7 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg font-semibold text-stone-800">Food guide</h2>
+                        <h2 className="text-lg text-stone-800">Food guide</h2>
                         <p className="text-sm text-stone-500 mt-1 mb-4">
                             Foods categorised by safety for people with haemochromatosis.
                         </p>
@@ -236,7 +236,7 @@ export default function DietPlanPage() {
                                     >
                                         {/* top row — name and badge */}
                                         <div className="flex items-start justify-between gap-2">
-                                            <h3 className="text-sm font-semibold text-stone-800">{food.name}</h3>
+                                            <h3 className="text-sm text-stone-800">{food.name}</h3>
                                             <span className={`text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0
                                                 ${food.cat === 'go'
                                                     ? 'bg-green-200 text-green-800'
@@ -266,7 +266,7 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg font-semibold text-stone-800">Sample daily meal plans</h2>
+                        <h2 className="text-lg text-stone-800">Sample daily meal plans</h2>
                         <p className="text-sm text-stone-500 mt-1 mb-4">
                             Example meal plans tailored to your sex and life stage. These are guides, not prescriptions.
                         </p>
@@ -311,7 +311,7 @@ export default function DietPlanPage() {
                                 </span>
 
                                 {/* meal name */}
-                                <h3 className="text-sm font-semibold text-stone-800">{meal.name}</h3>
+                                <h3 className="text-sm text-stone-800">{meal.name}</h3>
 
                                 {/* description */}
                                 <p className="text-xs text-stone-500 mt-2 leading-relaxed">{meal.desc}</p>
@@ -338,7 +338,7 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg font-semibold text-stone-800">Timing guide</h2>
+                        <h2 className="text-lg text-stone-800">Timing guide</h2>
                         <p className="text-sm text-stone-500 mt-1 mb-4">
                             When you eat matters as much as what you eat. These timing strategies can reduce iron absorption.
                         </p>
@@ -356,7 +356,7 @@ export default function DietPlanPage() {
                             <div key={tip.title} className="flex gap-4 items-start bg-stone-50 border border-stone-200 rounded-xl p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
                                 <span className="text-2xl flex-shrink-0">{tip.icon}</span>
                                 <div>
-                                    <h3 className="text-sm font-semibold text-stone-800">{tip.title}</h3>
+                                    <h3 className="text-sm text-stone-800">{tip.title}</h3>
                                     <p className="text-xs text-stone-500 mt-1 leading-relaxed">{tip.text}</p>
                                 </div>
                             </div>
@@ -370,7 +370,7 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg font-semibold text-stone-800">Special considerations</h2>
+                        <h2 className="text-lg text-stone-800">Special considerations</h2>
                         <p className="text-sm text-stone-500 mt-1 mb-4">
                             Important dietary factors for specific groups and situations.
                         </p>
@@ -390,7 +390,7 @@ export default function DietPlanPage() {
                         ].map((item) => (
                             <div key={item.title} className="bg-stone-50 border border-stone-200 rounded-xl p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
                                 <div className="text-2xl mb-2">{item.icon}</div>
-                                <h3 className="text-sm font-semibold text-stone-800 mb-1">{item.title}</h3>
+                                <h3 className="text-sm text-stone-800 mb-1">{item.title}</h3>
                                 <p className="text-xs text-stone-500 leading-relaxed">{item.text}</p>
                             </div>
                         ))}

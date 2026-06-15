@@ -33,7 +33,7 @@ export default function MainLayout() {
           <div className="hidden md:flex gap-6 text-sm font-medium">
             <Link
               to="/"
-              className={`px-4 py-2 rounded-md transition-colors
+              className={`font-logo px-4 py-2 rounded-md transition-colors
                 ${location.pathname === '/'
                   ? 'bg-red-100 text-stone-600'
                   : 'text-stone-600 hover:text-red-700'
@@ -43,7 +43,7 @@ export default function MainLayout() {
             </Link>
             <Link
               to="/search"
-              className={`px-4 py-2 rounded-md transition-colors
+              className={`font-logo px-4 py-2 rounded-md transition-colors
                 ${location.pathname === '/search'
                   ? 'bg-red-100 text-stone-600'
                   : 'text-stone-600 hover:text-red-700'
@@ -53,7 +53,7 @@ export default function MainLayout() {
             </Link>
             <Link
               to="/learn"
-              className={`px-4 py-2 rounded-md transition-colors
+              className={`font-logo px-4 py-2 rounded-md transition-colors
                 ${location.pathname === '/learn'
                   ? 'bg-red-100 text-stone-600'
                   : 'text-stone-600 hover:text-red-700'
@@ -63,7 +63,7 @@ export default function MainLayout() {
             </Link>
             <Link
               to="/diet-plan"
-              className={`px-4 py-2 rounded-md transition-colors
+              className={`font-logo px-4 py-2 rounded-md transition-colors
                 ${location.pathname === '/diet-plan'
                   ? 'bg-red-100 text-stone-600'
                   : 'text-stone-600 hover:text-red-700'
@@ -73,7 +73,7 @@ export default function MainLayout() {
             </Link>
             <Link
               to="/about"
-              className={`px-4 py-2 rounded-md transition-colors
+              className={`font-logo px-4 py-2 rounded-md transition-colors
                 ${location.pathname === '/about'
                   ? 'bg-red-100 text-stone-600'
                   : 'text-stone-600 hover:text-red-700'

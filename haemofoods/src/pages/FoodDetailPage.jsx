@@ -132,7 +132,7 @@ export default function FoodDetailPage() {
 
       {/* product header */}
       <div className="mt-4 mb-6">
-        <h1 className="text-2xl font-bold text-stone-900">
+        <h1 className="text-2xl text-stone-900">
           {product.product_name || 'Unknown product'}
         </h1>
         <p className="text-stone-400">{product.brands || product.category || ''}</p>
@@ -149,7 +149,7 @@ export default function FoodDetailPage() {
 
       {/* nutrient breakdown */}
       <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6">
-        <h2 className="font-bold text-stone-900 mb-3">Nutrient Breakdown</h2>
+        <h2 className="text-stone-900 mb-3">Nutrient Breakdown</h2>
         <div className="flex flex-col gap-2 text-sm">
           <div className="flex justify-between">
             <span className="text-stone-500">Iron</span>
@@ -193,7 +193,7 @@ export default function FoodDetailPage() {
       {/* category tags — only shown for API products that have them */}
       {product.categories_tags && product.categories_tags.length > 0 && (
         <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6">
-          <h2 className="font-bold text-stone-900 mb-3">Category Tags</h2>
+          <h2 className="text-stone-900 mb-3">Category Tags</h2>
           <div className="flex flex-wrap gap-2">
             {product.categories_tags.map((tag) => (
               <span
@@ -216,7 +216,7 @@ export default function FoodDetailPage() {
               alt="HaemoBot"
               className="w-10 h-10 rounded-full object-cover"
             />
-            <h2 className="font-bold text-stone-900">Ask HaemoBot</h2>
+            <h2 className="text-stone-900">Ask HaemoBot</h2>
           </div>
 
           {botReply && (
