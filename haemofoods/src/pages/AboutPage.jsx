@@ -99,8 +99,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* ---------- SECTION 2: Our Partners ---------- */}
-                {/* fadeIn — fades in without sliding, staggered 0.15s after section 1 */}
-                <section className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] [animation-delay:0.15s]">
+                <section className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.15s]">
                     <h2 className="text-xl text-stone-900 mb-6">Our Partners</h2>
 
                     {/* two rows: associations then universities */}
@@ -164,8 +163,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* ---------- SECTION 3: Research Team ---------- */}
-                {/* fadeIn staggered 0.3s */}
-                <section className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] [animation-delay:0.3s] relative z-10">
+                <section className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s] relative z-10">
                     <h2 className="text-xl text-stone-900 mb-6">Research Team</h2>
 
                     {/* team grid — single column, cards stack vertically */}
@@ -243,9 +241,8 @@ export default function AboutPage() {
                 </section>
 
                 {/* ---------- SECTION 4: How the Search Works ---------- */}
-                {/* fadeIn staggered 0.45s */}
                 {/* scroll-mt-24 offsets the scroll target so heading isn't hidden behind sticky navbar */}
-                <section id="how-it-works" className="scroll-mt-24 opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] [animation-delay:0.45s]">
+                <section id="how-it-works" className="scroll-mt-24 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.45s]">
                     <h2 className="text-xl text-stone-900 mb-4">How the Search Works</h2>
 
                     <div className="space-y-4 text-stone-600 leading-relaxed">
@@ -265,7 +262,7 @@ export default function AboutPage() {
 
                         {/* IHA methodology — separated into its own highlighted block */}
                         <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 space-y-3">
-                            <p className="font-logo text-stone-800">
+                            <p className="font-semibold text-stone-800">
                                 How we rate foods
                             </p>
                             <p>
@@ -322,8 +319,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* ---------- SECTION 5: Sources ---------- */}
-                {/* fadeIn staggered 0.6s */}
-                <section className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] [animation-delay:0.6s]">
+                <section className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.6s]">
                     <h2 className="text-xl text-stone-900 mb-4">Visit Our Sources</h2>
 
                     <div className="space-y-3">

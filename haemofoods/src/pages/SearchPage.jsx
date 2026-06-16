@@ -78,10 +78,10 @@ export default function SearchPage() {
 
   return (
     <div>
-      <h1 className="text-2xl text-stone-900 mb-6">Search foods</h1>
+      <h1 className="text-2xl text-stone-900 mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">Search foods</h1>
 
       {showBanner && (
-        <div className='flex justify-between items-start bg-stone-50 border border-stone-200 rounded-lg p-3 text-sm text-stone-600 mb-4'>
+        <div className='flex justify-between items-start bg-stone-50 border border-stone-200 rounded-lg p-3 text-sm text-stone-600 mb-4 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.15s]'>
           <div>
             {/*bold intro line*/}
             <p className='font-medium text-stone-700 mb-1 text-sm'>
@@ -97,7 +97,7 @@ export default function SearchPage() {
               >
                 <br />
                 Learn how our ratings work
-              </Link> {/* ✅ FIX 2: was </a>, now matches <Link> */}
+              </Link>
             </p>
           </div>
           {/* dismiss button - ml-3 adds gap between text and button */}
@@ -108,10 +108,11 @@ export default function SearchPage() {
           </button>
         </div>
       )}
-      {/* ✅ FIX 3: banner now closes properly — rest of component stays inside return */}
 
       {/* search input */}
-      <SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
+      <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s]">
+        <SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
+      </div>
 
       {/* filter buttons — only show after a search */}
       {hasSearched && results.length > 0 && (
@@ -145,7 +146,10 @@ export default function SearchPage() {
       )}
 
       {loading && (
-        <p className="text-stone-400 text-sm mt-6">Searching...</p>
+        <div className="flex items-center gap-3 mt-6">
+          <div className="haemobot-loader" />
+          <p className="text-stone-400 text-sm">Searching...</p>
+        </div>
       )}
 
       {/* results count */}

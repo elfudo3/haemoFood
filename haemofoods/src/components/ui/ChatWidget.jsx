@@ -287,7 +287,7 @@ export default function ChatWidget() {
             setIsOpen(!isOpen)
             setHasOpened(true)
           }}
-          className="relative p-0.5 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 shadow-lg pointer-events-auto"
+          className="relative p-0.5 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 shadow-lg pointer-events-auto transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98] cursor-pointer"
         >
           <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl overflow-hidden">
             {isOpen

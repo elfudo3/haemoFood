@@ -32,6 +32,30 @@ export default function LearnPage() {
           <span className="text-xs text-stone-400 align-super">[1,2,3]</span>
         </p>
 
+        {/* biological mechanism — from team research */}
+        <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 space-y-3 mb-6">
+          <p className="font-semibold text-stone-800">How iron absorption works</p>
+          <p className="text-stone-600 leading-relaxed text-sm">
+            When you eat food containing iron, it is absorbed from the small intestine
+            through two transporters: DMT1 (divalent metal transporter 1), which moves
+            iron from the intestine into the cells, and Ferroportin, which brings the
+            iron from the cell into the bloodstream. It is then transported in the
+            bloodstream to perform its functions.
+          </p>
+          <p className="text-stone-600 leading-relaxed text-sm">
+            The liver produces an enzyme called Hepcidin, which monitors blood iron
+            levels. If levels get too high, hepcidin is released and binds to
+            Ferroportin, preventing any more iron from moving into the bloodstream.
+          </p>
+          <p className="text-stone-600 leading-relaxed text-sm">
+            In haemochromatosis, a mutation in the HFE gene stops hepcidin from
+            working properly, so more and more iron is taken up from food into the
+            bloodstream. The excess iron gets deposited in organs such as the heart,
+            liver, pancreas, skin, and gonads — which is where the symptoms of
+            haemochromatosis come from.
+          </p>
+        </div>
+
         {/* symptoms diagram — image beside text */}
         <div className="flex flex-col md:flex-row gap-6 mb-6">
           <img
@@ -94,8 +118,96 @@ export default function LearnPage() {
         </div>
       </section>
 
-      {/* ===== SECTION 2: Two Types of Iron ===== */}
+      {/* ===== SECTION 2: Diagnosis ===== */}
       <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.6s]">
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Detection</p>
+        <h2 className="text-2xl text-stone-900 mb-4">How is it diagnosed?</h2>
+
+        <p className="text-stone-600 leading-relaxed mb-6">
+          Diagnosis typically involves a series of tests, starting with blood work
+          and progressing to genetic testing if iron levels are elevated.
+        </p>
+
+        <div className="space-y-4">
+          <div className="bg-stone-50 border border-stone-200 rounded-xl p-5">
+            <p className="font-semibold text-stone-800 mb-2">1. Blood tests</p>
+            <p className="text-sm text-stone-600 leading-relaxed">
+              Iron is transported in your blood by transferrin, and stored as serum
+              ferritin. Both transferrin saturation and serum ferritin levels are
+              tested. High levels of either indicate that further testing is needed.
+            </p>
+          </div>
+
+          <div className="bg-stone-50 border border-stone-200 rounded-xl p-5">
+            <p className="font-semibold text-stone-800 mb-2">2. Genetic testing</p>
+            <p className="text-sm text-stone-600 leading-relaxed">
+              Your DNA is sequenced and examined for mutations. The most common
+              mutations associated with haemochromatosis are in the HFE gene, found
+              on chromosome 6. Other mutations such as HAMP and TFR2 can also play
+              a role.
+            </p>
+          </div>
+
+          <div className="bg-stone-50 border border-stone-200 rounded-xl p-5">
+            <p className="font-semibold text-stone-800 mb-2">3. Further testing</p>
+            <p className="text-sm text-stone-600 leading-relaxed">
+              Additional tests check for complications from iron overload. These
+              include liver biopsy and MRI scans to check for liver damage, HbA1c
+              blood sugar tests for diabetes, ECG or echocardiogram for heart
+              function, and DEXA scans to check for osteoporosis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SECTION 3: Genetics ===== */}
+      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.7s]">
+        <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Inheritance</p>
+        <h2 className="text-2xl text-stone-900 mb-4">Genetics and haemochromatosis</h2>
+
+        <p className="text-stone-600 leading-relaxed mb-4">
+          Haemochromatosis is an autosomal recessive disorder. This means you must
+          inherit the same gene mutation from both parents to develop the condition.
+          If you only inherit one copy, you are considered a carrier. Everyone has
+          two copies of the HFE gene — one from each parent — and both must be
+          mutated for the condition to develop.
+        </p>
+
+        {/* mutation types — stacked because the diagram is wide/horizontal */}
+        <div className="mb-6">
+          <img
+            src="/images/HFEMutations.png"
+            alt="Diagram showing the three common HFE gene mutations"
+            className="w-full rounded-xl object-contain mb-6"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="bg-stone-50 border border-stone-200 rounded-xl p-4">
+              <p className="font-medium text-stone-800 mb-1">C282Y Homozygous</p>
+              <p className="text-sm text-stone-600 leading-relaxed">
+                Both HFE genes carry the same C282Y mutation. This is the most
+                common form and causes the most severe symptoms.
+              </p>
+            </div>
+            <div className="bg-stone-50 border border-stone-200 rounded-xl p-4">
+              <p className="font-medium text-stone-800 mb-1">C282Y/H63D Heterozygous</p>
+              <p className="text-sm text-stone-600 leading-relaxed">
+                The HFE genes are mutated at different sites — one at C282Y and
+                one at H63D. Less common, typically less severe.
+              </p>
+            </div>
+            <div className="bg-stone-50 border border-stone-200 rounded-xl p-4">
+              <p className="font-medium text-stone-800 mb-1">H63D Homozygous</p>
+              <p className="text-sm text-stone-600 leading-relaxed">
+                Both HFE genes carry the same H63D mutation. Less common and
+                generally causes less severe symptoms.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SECTION 4: Two Types of Iron ===== */}
+      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.8s]">
         <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Diet &amp; Iron</p>
         <h2 className="text-2xl text-stone-900 mb-4">Not all iron is equal</h2>
 
@@ -143,8 +255,8 @@ export default function LearnPage() {
         </p>
       </section>
 
-      {/* ===== SECTION 3: Enhancers and Inhibitors ===== */}
-      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.7s]">
+      {/* ===== SECTION 5: Enhancers and Inhibitors ===== */}
+      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.9s]">
         <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">What You Eat With It Matters</p>
         <h2 className="text-2xl text-stone-900 mb-4">Iron enhancers and inhibitors</h2>
 
@@ -160,7 +272,7 @@ export default function LearnPage() {
         {/* enhancers */}
         <div className="rounded-xl border border-red-200 bg-red-50 p-5 mb-4">
           <p className="font-semibold text-red-800 mb-3">
-             Enhancers — increase iron absorption
+            Enhancers — increase iron absorption
           </p>
           <div className="space-y-2 text-sm text-red-700">
             <p>
@@ -189,7 +301,7 @@ export default function LearnPage() {
         {/* inhibitors */}
         <div className="rounded-xl border border-green-200 bg-green-50 p-5">
           <p className="font-semibold text-green-800 mb-3">
-             Inhibitors — reduce iron absorption
+            Inhibitors — reduce iron absorption
           </p>
           <div className="space-y-2 text-sm text-green-700">
             <p>
@@ -224,8 +336,8 @@ export default function LearnPage() {
         </div>
       </section>
 
-      {/* ===== SECTION 4: Alcohol ===== */}
-      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.8s]">
+      {/* ===== SECTION 6: Alcohol ===== */}
+      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:1.0s]">
         <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Important Warning</p>
         <h2 className="text-2xl text-stone-900 mb-4">Alcohol and haemochromatosis</h2>
 
@@ -266,8 +378,8 @@ export default function LearnPage() {
         </p>
       </section>
 
-      {/* ===== SECTION 5: Raw Shellfish ===== */}
-      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.9s]">
+      {/* ===== SECTION 7: Raw Shellfish ===== */}
+      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:1.1s]">
         <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Food Safety</p>
         <h2 className="text-2xl text-stone-900 mb-4">Raw shellfish warning</h2>
 
@@ -283,8 +395,8 @@ export default function LearnPage() {
         </div>
       </section>
 
-      {/* ===== SECTION 6: Daily Iron Needs ===== */}
-      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:1.0s]">
+      {/* ===== SECTION 8: Daily Iron Needs ===== */}
+      <section className="py-12 border-b border-stone-200 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:1.2s]">
         <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">How Much Is Enough</p>
         <h2 className="text-2xl text-stone-900 mb-4">You still need iron</h2>
 
@@ -330,8 +442,8 @@ export default function LearnPage() {
         </p>
       </section>
 
-      {/* ===== REFERENCES ===== */}
-      <section className="py-12 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:1.1s]">
+      {/* ===== SECTION 9: References ===== */}
+      <section className="py-12 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:1.3s]">
         <p className="font-logo text-sm uppercase tracking-widest text-red-700 mb-2">Sources</p>
         <h2 className="text-2xl text-stone-900 mb-4">References</h2>
 
