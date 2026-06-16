@@ -208,11 +208,11 @@ export default function ChatWidget() {
       )}
 
       {/* ========== DESKTOP FLOATING CHAT ========== */}
-      <div className="hidden md:flex fixed bottom-6 right-6 z-50 flex-col items-end">
+      <div className="hidden md:flex fixed bottom-6 right-6 z-50 flex-col items-end pointer-events-none">
         {/* chat panel — gradient border wrapper */}
         <div className={`mb-4 p-0.5 rounded-2xl bg-gradient-to-br from-pink-500 to-orange-400 shadow-xl transition-all duration-300 origin-bottom-right
           ${isOpen
-            ? 'scale-100 opacity-100'
+            ? 'scale-100 opacity-100 pointer-events-auto'
             : 'scale-0 opacity-0 pointer-events-none'
           }`}
         >
@@ -287,7 +287,7 @@ export default function ChatWidget() {
             setIsOpen(!isOpen)
             setHasOpened(true)
           }}
-          className="relative p-0.5 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 shadow-lg"
+          className="relative p-0.5 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 shadow-lg pointer-events-auto"
         >
           <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl overflow-hidden">
             {isOpen

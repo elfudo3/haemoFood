@@ -21,13 +21,11 @@ export default function MainLayout() {
         <div className="max-w-3xl mx-auto flex items-center justify-between">
 
           {/* left — logo */}
-          <Link to="/">
-            <img
-              src="/images/logos/HaemoFood_logo.png"
-              alt="HaemoFood"
-              className="h-25 w-auto translate-x-[-10px] translate-y-[-6px]" //h-8 = 32px tall, w-auto keeps aspect ratio
-            />
-          </Link>
+          <img
+            src="/images/logos/HaemoFood_logo.png"
+            alt="HaemoFood"
+            className="h-8 w-auto translate-x-[-10px] translate-y-[-6px]" //h-8 = 32px tall, w-auto keeps aspect ratio
+          />
 
           {/* centre — nav links */}
           <div className="hidden md:flex gap-6 text-sm font-medium">
