@@ -94,7 +94,7 @@ function MobileChat({ messages, input, setInput, isLoading, handleSend, setIsOpe
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
           placeholder="Ask about haemochromatosis..."
-          className="flex-1 text-sm bg-stone-100 rounded-full px-3 py-2 outline-none focus:ring-2 focus:ring-red-300"
+          className="flex-1 text-base bg-stone-100 rounded-full px-3 py-2 outline-none focus:ring-2 focus:ring-red-300"
         />
         <button
           onClick={handleSend}
