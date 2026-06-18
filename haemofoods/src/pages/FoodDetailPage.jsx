@@ -50,9 +50,9 @@ export default function FoodDetailPage() {
   }, [code])
 
 
-  if (loading) return <p className="text-stone-400">Loading...</p>
-  if (error) return <p className="text-red-600">{error}</p>
-  if (!product) return <p className="text-stone-400">Product not found.</p>
+  if (loading) return <p className="text-stone-400 dark:text-stone-500">Loading...</p>
+  if (error) return <p className="text-red-600 dark:text-red-400">{error}</p>
+  if (!product) return <p className="text-stone-400 dark:text-stone-500">Product not found.</p>
 
   // extract nutrient values
   const iron = product.nutriments?.iron_100g ?? null
@@ -72,10 +72,10 @@ export default function FoodDetailPage() {
 
   // rating display config
   const ratingConfig = {
-    safe: { label: '🟢 Safe', bg: 'bg-green-100 text-green-800', message: 'Low iron content — safe to eat' },
-    moderate: { label: '🟡 Moderate', bg: 'bg-yellow-100 text-yellow-800', message: 'Moderate iron content — limit intake' },
-    avoid: { label: '🔴 Avoid', bg: 'bg-red-100 text-red-800', message: 'High iron content — best avoided' },
-    unknown: { label: '❓ Unknown', bg: 'bg-stone-100 text-stone-500', message: 'Not enough data to determine safety' },
+    safe: { label: '🟢 Safe', bg: 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200', message: 'Low iron content — safe to eat' },
+    moderate: { label: '🟡 Moderate', bg: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-200', message: 'Moderate iron content — limit intake' },
+    avoid: { label: '🔴 Avoid', bg: 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-200', message: 'High iron content — best avoided' },
+    unknown: { label: '❓ Unknown', bg: 'bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400', message: 'Not enough data to determine safety' },
   }
 
   const { label, bg } = ratingConfig[rating]
@@ -85,9 +85,9 @@ export default function FoodDetailPage() {
 
   // source tag config
   const sourceConfig = {
-    curated: { label: 'HaemoEat', style: 'bg-red-50 text-red-600' },
-    usda: { label: 'USDA', style: 'bg-blue-50 text-blue-600' },
-    off: { label: 'Open Food Facts', style: 'bg-emerald-50 text-emerald-600' },
+    curated: { label: 'HaemoEat', style: 'bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-300' },
+    usda: { label: 'USDA', style: 'bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300' },
+    off: { label: 'Open Food Facts', style: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300' },
   }
   const source = sourceConfig[product.source] || sourceConfig.off
 
@@ -126,16 +126,16 @@ export default function FoodDetailPage() {
   return (
     <div>
       {/* back link */}
-      <Link to="/search" className="text-sm text-red-700 hover:underline">
+      <Link to="/search" className="text-sm text-red-700 hover:underline dark:text-red-400">
         ← Back to search
       </Link>
 
       {/* product header */}
       <div className="mt-4 mb-6">
-        <h1 className="text-2xl text-stone-900">
+        <h1 className="text-2xl text-stone-900 dark:text-stone-100">
           {product.product_name || 'Unknown product'}
         </h1>
-        <p className="text-stone-400">{product.brands || product.category || ''}</p>
+        <p className="text-stone-400 dark:text-stone-500">{product.brands || product.category || ''}</p>
         <span className={`text-xs px-1.5 py-0.5 rounded mt-2 inline-block ${source.style}`}>
           {source.label}
         </span>
@@ -148,28 +148,28 @@ export default function FoodDetailPage() {
       </div>
 
       {/* nutrient breakdown */}
-      <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6">
-        <h2 className="text-stone-900 mb-3">Nutrient Breakdown</h2>
+      <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6 dark:bg-stone-900 dark:border-stone-800">
+        <h2 className="text-stone-900 mb-3 dark:text-stone-100">Nutrient Breakdown</h2>
         <div className="flex flex-col gap-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-stone-500">Iron</span>
-            <span className="font-medium text-stone-800">{formatIron(iron)}</span>
+            <span className="text-stone-500 dark:text-stone-400">Iron</span>
+            <span className="font-medium text-stone-800 dark:text-stone-200">{formatIron(iron)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-stone-500">Vitamin C</span>
-            <span className="font-medium text-stone-800">{formatVitaminC(vitaminC)}</span>
+            <span className="text-stone-500 dark:text-stone-400">Vitamin C</span>
+            <span className="font-medium text-stone-800 dark:text-stone-200">{formatVitaminC(vitaminC)}</span>
           </div>
           {vitaminC != null && vitaminC > 0 && (
-            <p className="text-xs text-yellow-700 bg-yellow-50 rounded p-2">
+            <p className="text-xs text-yellow-700 bg-yellow-50 rounded p-2 dark:text-yellow-300 dark:bg-yellow-950/40">
               ⚠️ Vitamin C increases iron absorption — be mindful when eating iron-rich foods alongside this product
             </p>
           )}
           <div className="flex justify-between">
-            <span className="text-stone-500">Alcohol</span>
-            <span className="font-medium text-stone-800">{formatAlcohol(alcohol)}</span>
+            <span className="text-stone-500 dark:text-stone-400">Alcohol</span>
+            <span className="font-medium text-stone-800 dark:text-stone-200">{formatAlcohol(alcohol)}</span>
           </div>
           {alcohol != null && alcohol > 0 && (
-            <p className="text-xs text-yellow-700 bg-yellow-50 rounded p-2">
+            <p className="text-xs text-yellow-700 bg-yellow-50 rounded p-2 dark:text-yellow-300 dark:bg-yellow-950/40">
               ⚠️ Alcohol causes liver stress — particularly important for haemochromatosis patients
             </p>
           )}
@@ -178,7 +178,7 @@ export default function FoodDetailPage() {
 
       {/* data source disclaimer - only shown for HaemoFood curated results */}
       {product.source === 'curated' && (
-        <div className='bg-blue-50 rounded-lg p-4 mb-3 text-xs text-blue-700'>
+        <div className='bg-blue-50 rounded-lg p-4 mb-3 text-xs text-blue-700 dark:bg-blue-950/40 dark:text-blue-300'>
           <p className='font-semibold mb-1'>About this data</p>
           <p>
             Nutritional values are estimates based on {product.dataSource === 'estimated'
@@ -192,13 +192,13 @@ export default function FoodDetailPage() {
 
       {/* category tags — only shown for API products that have them */}
       {product.categories_tags && product.categories_tags.length > 0 && (
-        <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6">
-          <h2 className="text-stone-900 mb-3">Category Tags</h2>
+        <div className="bg-white rounded-lg border border-stone-200 p-4 mb-6 dark:bg-stone-900 dark:border-stone-800">
+          <h2 className="text-stone-900 mb-3 dark:text-stone-100">Category Tags</h2>
           <div className="flex flex-wrap gap-2">
             {product.categories_tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded-full"
+                className="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded-full dark:bg-stone-800 dark:text-stone-300"
               >
                 {tag.replace('en:', '')}
               </span>
@@ -209,18 +209,18 @@ export default function FoodDetailPage() {
 
       {/* haemobot clinical interpretation */}
       <div className="p-0.5 rounded-xl bg-gradient-to-br from-pink-500 to-orange-400 mb-6 transition-all duration-200 hover:scale-[1.001] hover:shadow-lg hover:shadow-pink-500/20">
-        <div className="bg-white rounded-xl p-4">
+        <div className="bg-white rounded-xl p-4 dark:bg-stone-900">
           <div className="flex items-center gap-2 mb-3">
             <img
               src="/images/HaemoBot_v1.png"
               alt="HaemoBot"
               className="w-10 h-10 rounded-full object-cover"
             />
-            <h2 className="text-stone-900">Ask HaemoBot</h2>
+            <h2 className="text-stone-900 dark:text-stone-100">Ask HaemoBot</h2>
           </div>
 
           {botReply && (
-            <p className="text-sm text-stone-700 bg-stone-50 rounded-lg p-3 mb-3">
+            <p className="text-sm text-stone-700 bg-stone-50 rounded-lg p-3 mb-3 dark:text-stone-300 dark:bg-stone-800">
               {botReply}
             </p>
           )}
@@ -230,7 +230,7 @@ export default function FoodDetailPage() {
               onClick={askHaemoBot}
               disabled={botLoading}
               className={`text-sm px-4 py-2 rounded-full font-medium transition-all duration-200 ${botLoading
-                ? 'bg-stone-100 text-stone-400 cursor-not-allowed'
+                ? 'bg-stone-100 text-stone-400 cursor-not-allowed dark:bg-stone-800 dark:text-stone-500'
                 : 'bg-gradient-to-br from-pink-500 to-orange-400 text-white focus:ring-4 focus:outline-none focus:ring-pink-300 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-pink-500/20 active:scale-[0.98]'
                 }`}
             >
@@ -241,7 +241,7 @@ export default function FoodDetailPage() {
       </div>
 
       {/* disclaimer */}
-      <div className="bg-stone-100 rounded-lg p-4 text-xs text-stone-400">
+      <div className="bg-stone-100 rounded-lg p-4 text-xs text-stone-400 dark:bg-stone-900 dark:text-stone-500">
         Always consult your dietitian — this tool is a guide, not medical advice.
       </div>
 

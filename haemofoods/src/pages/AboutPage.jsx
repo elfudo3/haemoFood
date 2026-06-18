@@ -76,20 +76,20 @@ export default function AboutPage() {
                 {/* ---------- SECTION 1: About HaemoFood ---------- */}
                 {/* fadeInUp — slides up + fades in, no delay (first element) */}
                 <section className="opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
-                    <h1 className="text-2xl md:text-3xl text-stone-900 mb-4">About HaemoFood</h1>
-                    <p className="text-stone-600 leading-relaxed">
+                    <h1 className="text-2xl md:text-3xl text-stone-900 mb-4 dark:text-stone-100">About HaemoFood</h1>
+                    <p className="text-stone-600 leading-relaxed dark:text-stone-400">
                         HaemoFood is more than a search tool — it&apos;s a platform built to raise
                         awareness about hereditary haemochromatosis and make reliable dietary
                         guidance accessible to anyone who needs it.
                     </p>
-                    <p className="text-stone-600 leading-relaxed mt-3">
+                    <p className="text-stone-600 leading-relaxed mt-3 dark:text-stone-400">
                         The site combines three things: a food safety checker backed by clinical
                         guidelines from the Irish Haemochromatosis Association, an information
                         guide explaining the science behind iron absorption and dietary management,
                         and HaemoBot — an AI assistant trained on IHA guidelines that can answer
                         specific questions about diet and haemochromatosis.
                     </p>
-                    <p className="text-stone-600 leading-relaxed mt-3">
+                    <p className="text-stone-600 leading-relaxed mt-3 dark:text-stone-400">
                         This project was developed as part of the Virtuome 2026 student research
                         programme, bringing together students from three Irish universities to
                         investigate whether patients with hereditary haemochromatosis have access
@@ -100,26 +100,26 @@ export default function AboutPage() {
 
                 {/* ---------- SECTION 2: Our Partners ---------- */}
                 <section className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.15s]">
-                    <h2 className="text-xl text-stone-900 mb-6">Our Partners</h2>
+                    <h2 className="text-xl text-stone-900 mb-6 dark:text-stone-100">Our Partners</h2>
 
                     {/* two rows: associations then universities */}
                     <div className="space-y-8">
 
                         {/* in association with */}
                         <div>
-                            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-4">
+                            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-4 dark:text-stone-500">
                                 In association with
                             </p>
                             {/* grid-cols-2 — always 2 columns, even on mobile */}
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl p-4">
+                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4">
                                     <img
                                         src="/images/logos/IHA.png"
                                         alt="Irish Haemochromatosis Association"
                                         className="max-h-16 object-contain"
                                     />
                                 </div>
-                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl p-4">
+                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4">
                                     <img
                                         src="/images/logos/VMH_square.png"
                                         alt="Virtual Metabolic Human"
@@ -131,26 +131,26 @@ export default function AboutPage() {
 
                         {/* students from */}
                         <div>
-                            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-4">
+                            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-4 dark:text-stone-500">
                                 Students from
                             </p>
                             {/* grid-cols-2 on mobile, 3 on medium screens */}
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl p-4">
+                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4">
                                     <img
                                         src="/images/logos/UG.png"
                                         alt="University of Galway"
                                         className="max-h-16 object-contain"
                                     />
                                 </div>
-                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl p-4">
+                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4">
                                     <img
                                         src="/images/logos/UCD1.png"
                                         alt="UCD"
                                         className="max-h-16 object-contain"
                                     />
                                 </div>
-                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl p-4">
+                                <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4">
                                     <img
                                         src="/images/logos/DCU.png"
                                         alt="DCU"
@@ -164,7 +164,7 @@ export default function AboutPage() {
 
                 {/* ---------- SECTION 3: Research Team ---------- */}
                 <section className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s] relative z-10">
-                    <h2 className="text-xl text-stone-900 mb-6">Research Team</h2>
+                    <h2 className="text-xl text-stone-900 mb-6 dark:text-stone-100">Research Team</h2>
 
                     {/* team grid — single column, cards stack vertically */}
                     <div className="grid grid-cols-1 gap-5">
@@ -172,12 +172,12 @@ export default function AboutPage() {
                             <div
                                 key={member.name}
                                 //flex on desktop, stack on mobile for better readability
-                                className="flex flex-col sm:flex-row gap-4 items-start bg-stone-50 border border-stone-200 rounded-xl p-4 relative pr-14"
+                                className="flex flex-col sm:flex-row gap-4 items-start bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 relative pr-14"
                             >
                                 {/* profile image — circular, 80x80 */}
                                 {/* flex-shrink-0 — prevents the circle from squishing when text is long */}
                                 {/* mx-auto on mobile centres the image when stacked, sm:mx-0 resets for row layout */}
-                                <div className="w-20 h-20 rounded-full bg-stone-200 flex-shrink-0 overflow-hidden mx-auto sm:mx-0">
+                                <div className="w-20 h-20 rounded-full bg-stone-200 flex-shrink-0 overflow-hidden mx-auto sm:mx-0 dark:bg-stone-800">
                                     {member.image ? (
                                         <img
                                             src={member.image}
@@ -186,7 +186,7 @@ export default function AboutPage() {
                                         />
                                     ) : (
                                         //placeholder — shows first letter of name
-                                        <div className="w-full h-full flex items-center justify-center text-stone-400 font-bold text-lg">
+                                        <div className="w-full h-full flex items-center justify-center text-stone-400 font-bold text-lg dark:text-stone-500">
                                             {member.name.charAt(0)}
                                         </div>
                                     )}
@@ -196,10 +196,10 @@ export default function AboutPage() {
                                 {/* min-w-0 — prevents text from overflowing the flex container */}
                                 {/* text-center on mobile, left-aligned on sm+ */}
                                 <div className="min-w-0 text-center sm:text-left">
-                                    <p className="font-bold text-stone-900">{member.name}</p>
-                                    <p className="text-xs text-stone-400 mt-0.5">{member.university}</p>
-                                    <p className="text-xs text-stone-400">{member.course}</p>
-                                    <p className="text-sm text-stone-600 mt-2 leading-relaxed">{member.role}</p>
+                                    <p className="font-bold text-stone-900 dark:text-stone-100">{member.name}</p>
+                                    <p className="text-xs text-stone-400 mt-0.5 dark:text-stone-500">{member.university}</p>
+                                    <p className="text-xs text-stone-400 dark:text-stone-500">{member.course}</p>
+                                    <p className="text-sm text-stone-600 mt-2 leading-relaxed dark:text-stone-400">{member.role}</p>
                                 </div>
 
                                 {/* flex-wrap handles narrow screens, justify-center on mobile matches text alignment */}
@@ -243,9 +243,9 @@ export default function AboutPage() {
                 {/* ---------- SECTION 4: How the Search Works ---------- */}
                 {/* scroll-mt-24 offsets the scroll target so heading isn't hidden behind sticky navbar */}
                 <section id="how-it-works" className="scroll-mt-24 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.45s]">
-                    <h2 className="text-xl text-stone-900 mb-4">How the Search Works</h2>
+                    <h2 className="text-xl text-stone-900 mb-4 dark:text-stone-100">How the Search Works</h2>
 
-                    <div className="space-y-4 text-stone-600 leading-relaxed">
+                    <div className="space-y-4 text-stone-600 leading-relaxed dark:text-stone-400">
                         <p>
                             When you search for a food, HaemoFood checks two sources. First, it searches our
                             curated database of approximately 150 foods that have been individually rated using
@@ -261,8 +261,8 @@ export default function AboutPage() {
                         </p>
 
                         {/* IHA methodology — separated into its own highlighted block */}
-                        <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 space-y-3">
-                            <p className="font-semibold text-stone-800">
+                        <div className="bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-5 space-y-3">
+                            <p className="font-semibold text-stone-800 dark:text-stone-200">
                                 How we rate foods
                             </p>
                             <p>
@@ -284,7 +284,7 @@ export default function AboutPage() {
                                 ratings that account for iron type, absorption enhancers like
                                 alcohol, and absorption inhibitors like tea, coffee, and calcium.
                             </p>
-                            <p className="text-sm text-stone-500 italic">
+                            <p className="text-sm text-stone-500 italic dark:text-stone-400">
                                 When a food is not in our curated database, we fall back to iron
                                 content per 100g from the USDA FoodData Central database and apply
                                 general thresholds. This numerical fallback does not distinguish
@@ -295,21 +295,21 @@ export default function AboutPage() {
 
                         {/* rating explanation cards — 1 column on mobile, 3 on sm+ */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
-                            <div className="rounded-xl border border-green-200 bg-green-50 p-4">
-                                <p className="font-semibold text-green-800 mb-1">🟢 Safe</p>
-                                <p className="text-sm text-green-700">
+                            <div className="rounded-xl border border-green-200 bg-green-50 p-4 dark:border-green-900/60 dark:bg-green-950/30">
+                                <p className="font-semibold text-green-800 mb-1 dark:text-green-300">🟢 Safe</p>
+                                <p className="text-sm text-green-700 dark:text-green-300">
                                     Low iron content. Generally safe for regular consumption.
                                 </p>
                             </div>
-                            <div className="rounded-xl border border-yellow-200 bg-yellow-50 p-4">
-                                <p className="font-semibold text-yellow-800 mb-1">🟡 Moderate</p>
-                                <p className="text-sm text-yellow-700">
+                            <div className="rounded-xl border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-900/60 dark:bg-yellow-950/30">
+                                <p className="font-semibold text-yellow-800 mb-1 dark:text-yellow-300">🟡 Moderate</p>
+                                <p className="text-sm text-yellow-700 dark:text-yellow-300">
                                     Medium iron content. Enjoy in moderation and monitor portions.
                                 </p>
                             </div>
-                            <div className="rounded-xl border border-red-200 bg-red-50 p-4">
-                                <p className="font-semibold text-red-800 mb-1">🔴 Avoid</p>
-                                <p className="text-sm text-red-700">
+                            <div className="rounded-xl border border-red-200 bg-red-50 p-4 dark:border-red-900/60 dark:bg-red-950/30">
+                                <p className="font-semibold text-red-800 mb-1 dark:text-red-300">🔴 Avoid</p>
+                                <p className="text-sm text-red-700 dark:text-red-300">
                                     High iron content or other risk factors. Best avoided or consumed rarely.
                                 </p>
                             </div>
@@ -320,7 +320,7 @@ export default function AboutPage() {
 
                 {/* ---------- SECTION 5: Sources ---------- */}
                 <section className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.6s]">
-                    <h2 className="text-xl text-stone-900 mb-4">Visit Our Sources</h2>
+                    <h2 className="text-xl text-stone-900 mb-4 dark:text-stone-100">Visit Our Sources</h2>
 
                     <div className="space-y-3">
                         <a
@@ -328,66 +328,66 @@ export default function AboutPage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             //transition-all instead of transition-colors so scale and translate animate too
-                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
+                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
                         >
                             <div>
-                                <p className="font-medium text-stone-900">Irish Haemochromatosis Association</p>
-                                <p className="text-sm text-stone-500 mt-1">
+                                <p className="font-medium text-stone-900 dark:text-stone-100">Irish Haemochromatosis Association</p>
+                                <p className="text-sm text-stone-500 mt-1 dark:text-stone-400">
                                     Clinical dietary guidelines for hereditary haemochromatosis patients.
                                 </p>
                             </div>
-                            <span className="text-stone-400 ml-4 text-lg flex-shrink-0">→</span>
+                            <span className="text-stone-400 ml-4 text-lg flex-shrink-0 dark:text-stone-500">→</span>
                         </a>
 
                         <a
                             href="/DIET_HAEMO_IRELAND.PDF"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
+                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
                         >
                             <div>
-                                <p className="font-medium text-stone-900">IHA Dietary Guide</p>
-                                <p className="text-sm text-stone-500 mt-1">
+                                <p className="font-medium text-stone-900 dark:text-stone-100">IHA Dietary Guide</p>
+                                <p className="text-sm text-stone-500 mt-1 dark:text-stone-400">
                                     Diet and Haemochromatosis — full dietary guide by Sarah Keogh, Consultant Dietitian (Feb 2023).
                                 </p>
                             </div>
-                            <span className="text-stone-400 ml-4 text-lg flex-shrink-0">→</span>
+                            <span className="text-stone-400 ml-4 text-lg flex-shrink-0 dark:text-stone-500">→</span>
                         </a>
 
                         <a
                             href="https://fdc.nal.usda.gov/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
+                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
                         >
                             <div>
-                                <p className="font-medium text-stone-900">USDA FoodData Central</p>
-                                <p className="text-sm text-stone-500 mt-1">
+                                <p className="font-medium text-stone-900 dark:text-stone-100">USDA FoodData Central</p>
+                                <p className="text-sm text-stone-500 mt-1 dark:text-stone-400">
                                     Comprehensive food composition database maintained by the U.S. Department of Agriculture.
                                 </p>
                             </div>
-                            <span className="text-stone-400 ml-4 text-lg flex-shrink-0">→</span>
+                            <span className="text-stone-400 ml-4 text-lg flex-shrink-0 dark:text-stone-500">→</span>
                         </a>
 
                         <a
                             href="https://www.vmh.life/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
+                            className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
                         >
                             <div>
-                                <p className="font-medium text-stone-900">Virtual Metabolic Human</p>
-                                <p className="text-sm text-stone-500 mt-1">
+                                <p className="font-medium text-stone-900 dark:text-stone-100">Virtual Metabolic Human</p>
+                                <p className="text-sm text-stone-500 mt-1 dark:text-stone-400">
                                     Database of human and gut microbial metabolism for systems biology research.
                                 </p>
                             </div>
-                            <span className="text-stone-400 ml-4 text-lg flex-shrink-0">→</span>
+                            <span className="text-stone-400 ml-4 text-lg flex-shrink-0 dark:text-stone-500">→</span>
                         </a>
                     </div>
 
                     {/* disclaimer */}
-                    <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-xl">
-                        <p className="text-sm text-amber-800">
+                    <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-xl dark:bg-amber-950/30 dark:border-amber-900/60">
+                        <p className="text-sm text-amber-800 dark:text-amber-200">
                             <span className="font-semibold">Medical disclaimer:</span> HaemoFood is an
                             educational tool and does not constitute medical advice. Always consult your
                             doctor or dietitian before making dietary changes based on this information.

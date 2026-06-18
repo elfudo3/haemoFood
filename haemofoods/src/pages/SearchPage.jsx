@@ -8,16 +8,16 @@ import { getIronRating, getCategoryRating } from '../utils/scoring'
 
 // filter button config — label, value, colours
 const FILTERS = [
-  { label: 'All', value: 'all', style: 'bg-stone-100 text-stone-700 border-stone-300' },
-  { label: '🟢 Safe', value: 'safe', style: 'bg-green-100 text-green-800 border-green-300' },
-  { label: '🟡 Moderate', value: 'moderate', style: 'bg-yellow-100 text-yellow-800 border-yellow-300' },
-  { label: '🔴 Avoid', value: 'avoid', style: 'bg-red-100 text-red-800 border-red-300' },
+  { label: 'All', value: 'all', style: 'bg-stone-100 text-stone-700 border-stone-300 dark:bg-stone-800 dark:text-stone-200 dark:border-stone-700' },
+  { label: '🟢 Safe', value: 'safe', style: 'bg-green-100 text-green-800 border-green-300 dark:bg-green-900/40 dark:text-green-300 dark:border-green-800' },
+  { label: '🟡 Moderate', value: 'moderate', style: 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/40 dark:text-yellow-300 dark:border-yellow-800' },
+  { label: '🔴 Avoid', value: 'avoid', style: 'bg-red-100 text-red-800 border-red-300 dark:bg-red-900/40 dark:text-red-300 dark:border-red-800' },
 ]
 
 const SOURCE_FILTERS = [
-  { label: 'All Sources', value: 'all', style: 'bg-stone-100 text-stone-700 border-stone-300' },
-  { label: 'HaemoFood', value: 'curated', style: 'bg-red-50 text-red-600 border-red-300' },
-  { label: 'USDA', value: 'usda', style: 'bg-blue-50 text-blue-600 border-blue-300' },
+  { label: 'All Sources', value: 'all', style: 'bg-stone-100 text-stone-700 border-stone-300 dark:bg-stone-800 dark:text-stone-200 dark:border-stone-700' },
+  { label: 'HaemoFood', value: 'curated', style: 'bg-red-50 text-red-600 border-red-300 dark:bg-red-950/40 dark:text-red-300 dark:border-red-800' },
+  { label: 'USDA', value: 'usda', style: 'bg-blue-50 text-blue-600 border-blue-300 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800' },
 ]
 
 
@@ -78,22 +78,22 @@ export default function SearchPage() {
 
   return (
     <div>
-      <h1 className="text-2xl text-stone-900 mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">Search foods</h1>
+      <h1 className="text-2xl text-stone-900 mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] dark:text-stone-100">Search foods</h1>
 
       {showBanner && (
-        <div className='flex justify-between items-start bg-stone-50 border border-stone-200 rounded-lg p-3 text-sm text-stone-600 mb-4 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.15s]'>
+        <div className='flex justify-between items-start bg-stone-50 border border-stone-200 rounded-lg p-3 text-sm text-stone-600 mb-4 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.15s] dark:bg-stone-900 dark:border-stone-800 dark:text-stone-300'>
           <div>
             {/*bold intro line*/}
-            <p className='font-medium text-stone-700 mb-1 text-sm'>
+            <p className='font-medium text-stone-700 mb-1 text-sm dark:text-stone-200'>
               Search by food name to check its iron safety rating.
             </p>
 
-            <p className='text-sm text-stone-600'>
+            <p className='text-sm text-stone-600 dark:text-stone-400'>
               Results are rated 🟢 Safe, 🟡 Moderate, or 🔴 Avoid based on Irish Haemochromatosis
               Association guidelines. We search our curated food database and the USDA database for each query.
               {' '}
               <Link to="/about#how-it-works"
-                className="text-red-600 hover:text-red-800 underline underline-offset-2 font-medium transition-colors"
+                className="text-red-600 hover:text-red-800 underline underline-offset-2 font-medium transition-colors dark:text-red-400 dark:hover:text-red-300"
               >
                 <br />
                 Learn how our ratings work
@@ -103,7 +103,7 @@ export default function SearchPage() {
           {/* dismiss button - ml-3 adds gap between text and button */}
           <button
             onClick={() => setShowBanner(false)}
-            className='ml-3 text-stone-400 hover:text-stone-600'
+            className='ml-3 text-stone-400 hover:text-stone-600 dark:text-stone-500 dark:hover:text-stone-300'
           >x
           </button>
         </div>
@@ -148,13 +148,13 @@ export default function SearchPage() {
       {loading && (
         <div className="flex items-center gap-3 mt-6">
           <div className="haemobot-loader" />
-          <p className="text-stone-400 text-sm">Searching...</p>
+          <p className="text-stone-400 text-sm dark:text-stone-500">Searching...</p>
         </div>
       )}
 
       {/* results count */}
       {hasSearched && results.length > 0 && (
-        <p className="text-xs text-stone-400 mt-3">
+        <p className="text-xs text-stone-400 mt-3 dark:text-stone-500">
           {filtered.length} result{filtered.length !== 1 ? 's' : ''}
           {activeFilter !== 'all' ? ` — ${activeFilter} only` : ''}
         </p>
@@ -171,14 +171,14 @@ export default function SearchPage() {
 
       {/* no results after filtering */}
       {!loading && hasSearched && results.length > 0 && filtered.length === 0 && (
-        <p className="text-stone-400 text-sm mt-6">
+        <p className="text-stone-400 text-sm mt-6 dark:text-stone-500">
           No {activeFilter} foods found for "{query}". Try a different filter.
         </p>
       )}
 
       {/* no results at all */}
       {!loading && hasSearched && results.length === 0 && (
-        <p className="text-stone-400 text-sm mt-6">
+        <p className="text-stone-400 text-sm mt-6 dark:text-stone-500">
           No foods found for "{query}". Try searching a different term.
         </p>
       )}

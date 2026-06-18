@@ -15,7 +15,7 @@ export default function SearchBar({ value, onChange, onSearch, placeholder }) {
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder || 'Search for a food...'}
-        className="flex-1 px-4 py-3 rounded-lg border border-stone-300 bg-white text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-transparent"
+        className="flex-1 px-4 py-3 rounded-lg border border-stone-300 bg-white text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-transparent dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:placeholder-stone-500 dark:focus:ring-red-500"
       />
       <button
         onClick={onSearch}

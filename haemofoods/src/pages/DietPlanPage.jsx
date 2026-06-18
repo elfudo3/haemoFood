@@ -35,17 +35,17 @@ export default function DietPlanPage() {
         <div className='max-w-4xl mx-auto px-4 py-10'>
 
             {/* page heading — fadeInUp, no delay */}
-            <h1 className="text-2xl md:text-3xl text-stone-800 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+            <h1 className="text-2xl md:text-3xl text-stone-800 dark:text-stone-100 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
                 Dietary Management Plan
             </h1>
 
             {/* subtitle — fadeInUp, staggered 0.15s */}
-            <p className="text-sm text-stone-500 mt-2 mb-6 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.15s]">
+            <p className="text-sm text-stone-500 mt-2 mb-6 dark:text-stone-400 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.15s]">
                 Personalised guidance for managing iron intake with haemochromatosis.
             </p>
 
             {/* tab bar — fadeInUp, staggered 0.3s */}
-            <div className='flex gap-2 border-b border-stone-200 pb-4 mb-6 overflow-x-auto opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s]'>
+            <div className='flex gap-2 border-b border-stone-200 dark:border-stone-800 pb-4 mb-6 overflow-x-auto opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s]'>
                 {TABS.map((tab) => (
                     <button
                         key={tab.id}
@@ -53,7 +53,7 @@ export default function DietPlanPage() {
                         className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]
                         ${activeTab === tab.id
                                 ? 'bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white shadow-md'
-                                : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                                : 'bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700'
                             }`}
                     >
                         {tab.label}
@@ -66,8 +66,8 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg text-stone-800">Your daily iron targets</h2>
-                        <p className="text-sm text-stone-500 mt-1 mb-4">
+                        <h2 className="text-lg text-stone-800 dark:text-stone-100">Your daily iron targets</h2>
+                        <p className="text-sm text-stone-500 mt-1 mb-4 dark:text-stone-400">
                             The amount of iron you need depends on your age, sex, and stage of life.
                         </p>
                     </div>
@@ -80,8 +80,8 @@ export default function DietPlanPage() {
                                 onClick={() => setSelectedSex(option.id)}
                                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]
                                     ${selectedSex === option.id
-                                        ? 'bg-stone-800 text-white'
-                                        : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
+                                        ? 'bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900'
+                                        : 'bg-stone-100 text-stone-500 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:hover:bg-stone-700'
                                     }`}
                             >
                                 {option.label}
@@ -93,30 +93,30 @@ export default function DietPlanPage() {
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.2s]">
                         {selectedSex !== 'under18' ? (
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
-                                <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 text-center">
-                                    <div className="text-2xl font-bold text-stone-800">
+                                <div className="bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 text-center">
+                                    <div className="text-2xl font-bold text-stone-800 dark:text-stone-100">
                                         {SEX_STATS[selectedSex].daily}
                                     </div>
-                                    <div className="text-xs text-stone-500 mt-1">Daily iron target</div>
+                                    <div className="text-xs text-stone-500 mt-1 dark:text-stone-400">Daily iron target</div>
                                 </div>
-                                <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 text-center">
-                                    <div className="text-2xl font-bold text-stone-800">
+                                <div className="bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 text-center">
+                                    <div className="text-2xl font-bold text-stone-800 dark:text-stone-100">
                                         {SEX_STATS[selectedSex].haem}
                                     </div>
-                                    <div className="text-xs text-stone-500 mt-1">Max haem iron servings</div>
+                                    <div className="text-xs text-stone-500 mt-1 dark:text-stone-400">Max haem iron servings</div>
                                 </div>
-                                <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 text-center">
-                                    <div className="text-2xl font-bold text-stone-800">
+                                <div className="bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 text-center">
+                                    <div className="text-2xl font-bold text-stone-800 dark:text-stone-100">
                                         {SEX_STATS[selectedSex].focus}
                                     </div>
-                                    <div className="text-xs text-stone-500 mt-1">Key dietary focus</div>
+                                    <div className="text-xs text-stone-500 mt-1 dark:text-stone-400">Key dietary focus</div>
                                 </div>
                             </div>
                         ) : (
                             <div className="mb-8">
                                 {/* warning notice */}
-                                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
-                                    <p className="text-sm text-amber-800">
+                                <div className="bg-amber-50 border border-amber-200 rounded-xl dark:bg-amber-950/30 dark:border-amber-900/60 p-4 mb-4">
+                                    <p className="text-sm text-amber-800 dark:text-amber-200">
                                         <span className="font-semibold">Important:</span> Children and teenagers
                                         with haemochromatosis should always have their dietary management overseen
                                         by a paediatric dietitian. The targets below are general reference values only.
@@ -127,11 +127,11 @@ export default function DietPlanPage() {
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-sm">
                                         <thead>
-                                            <tr className="border-b border-stone-200">
-                                                <th className="text-left py-2 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wide">Age group</th>
-                                                <th className="text-left py-2 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wide">Sex</th>
-                                                <th className="text-left py-2 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wide">Daily iron</th>
-                                                <th className="text-left py-2 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wide">Key note</th>
+                                            <tr className="border-b border-stone-200 dark:border-stone-800">
+                                                <th className="text-left py-2 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wide dark:text-stone-400">Age group</th>
+                                                <th className="text-left py-2 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wide dark:text-stone-400">Sex</th>
+                                                <th className="text-left py-2 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wide dark:text-stone-400">Daily iron</th>
+                                                <th className="text-left py-2 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wide dark:text-stone-400">Key note</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -142,9 +142,9 @@ export default function DietPlanPage() {
                                                 ['14–18 years', 'Male', '11mg', 'Avoid very high haem iron foods'],
                                                 ['14–18 years', 'Female', '15mg', 'Higher target due to menstruation onset'],
                                             ].map((row, i) => (
-                                                <tr key={i} className="border-b border-stone-100 hover:bg-stone-50">
+                                                <tr key={i} className="border-b border-stone-100 hover:bg-stone-50 dark:border-stone-800 dark:hover:bg-stone-900">
                                                     {row.map((cell, j) => (
-                                                        <td key={j} className="py-2 px-3 text-stone-700">{cell}</td>
+                                                        <td key={j} className="py-2 px-3 text-stone-700 dark:text-stone-300">{cell}</td>
                                                     ))}
                                                 </tr>
                                             ))}
@@ -153,8 +153,8 @@ export default function DietPlanPage() {
                                 </div>
 
                                 {/* why children need special consideration */}
-                                <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mt-4">
-                                    <p className="text-sm text-stone-600">
+                                <div className="bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 mt-4">
+                                    <p className="text-sm text-stone-600 dark:text-stone-400">
                                         <span className="font-semibold">Why children need special consideration:</span> Children
                                         with HH are still growing and developing. Iron is essential for cognitive function, energy,
                                         and muscle development. The focus is on avoiding very high haem iron foods and iron
@@ -167,7 +167,7 @@ export default function DietPlanPage() {
 
                     {/* key principles — fadeInUp, staggered 0.7s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s]">
-                        <h3 className="text-base text-stone-800 mb-3">Key principles</h3>
+                        <h3 className="text-base text-stone-800 dark:text-stone-100 mb-3">Key principles</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {[
                                 { icon: '✅', title: 'Do not cut out iron entirely', text: 'Your body still needs iron for red blood cells, brain function, and energy. The goal is to manage iron, not eliminate it.' },
@@ -175,10 +175,10 @@ export default function DietPlanPage() {
                                 { icon: '⏳', title: 'Timing matters as much as content', text: 'When you eat certain foods alongside iron-rich foods changes how much iron your body absorbs.' },
                                 { icon: '⚖', title: 'Balance is essential', text: 'A restrictive diet creates new problems. Prioritise a varied, balanced diet — fibre, calcium, healthy fats, and protein all matter.' },
                             ].map((item) => (
-                                <div key={item.title} className="bg-stone-50 border border-stone-200 rounded-xl p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
+                                <div key={item.title} className="bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
                                     <div className="text-xl mb-2">{item.icon}</div>
-                                    <div className="text-sm font-semibold text-stone-800 mb-1">{item.title}</div>
-                                    <div className="text-xs text-stone-500 leading-relaxed">{item.text}</div>
+                                    <div className="text-sm font-semibold text-stone-800 dark:text-stone-200 mb-1">{item.title}</div>
+                                    <div className="text-xs text-stone-500 leading-relaxed dark:text-stone-400">{item.text}</div>
                                 </div>
                             ))}
                         </div>
@@ -191,8 +191,8 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg text-stone-800">Food guide</h2>
-                        <p className="text-sm text-stone-500 mt-1 mb-4">
+                        <h2 className="text-lg text-stone-800 dark:text-stone-100">Food guide</h2>
+                        <p className="text-sm text-stone-500 mt-1 mb-4 dark:text-stone-400">
                             Foods categorised by safety for people with haemochromatosis.
                         </p>
                     </div>
@@ -205,8 +205,8 @@ export default function DietPlanPage() {
                                 onClick={() => setFilterCat(filter.id)}
                                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]
                                     ${filterCat === filter.id
-                                        ? 'bg-stone-800 text-white'
-                                        : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
+                                        ? 'bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900'
+                                        : 'bg-stone-100 text-stone-500 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:hover:bg-stone-700'
                                     }`}
                             >
                                 {filter.label}
@@ -216,7 +216,7 @@ export default function DietPlanPage() {
 
                     {/* result count + food cards — fadeInUp, staggered 0.6s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.2s]">
-                        <p className="text-xs text-stone-400 mb-3">
+                        <p className="text-xs text-stone-400 mb-3 dark:text-stone-500">
                             Showing {FOODS.filter(f => filterCat === 'all' || f.cat === filterCat).length} of {FOODS.length} foods
                         </p>
 
@@ -228,21 +228,21 @@ export default function DietPlanPage() {
                                         key={food.name}
                                         className={`rounded-xl border p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]
                                             ${food.cat === 'go'
-                                                ? 'bg-green-50 border-green-200'
+                                                ? 'bg-green-50 border-green-200 dark:bg-green-950/30 dark:border-green-900/60'
                                                 : food.cat === 'caution'
-                                                    ? 'bg-yellow-50 border-yellow-200'
-                                                    : 'bg-red-50 border-red-200'
+                                                    ? 'bg-yellow-50 border-yellow-200 dark:bg-yellow-950/30 dark:border-yellow-900/60'
+                                                    : 'bg-red-50 border-red-200 dark:bg-red-950/30 dark:border-red-900/60'
                                             }`}
                                     >
                                         {/* top row — name and badge */}
                                         <div className="flex items-start justify-between gap-2">
-                                            <h3 className="text-sm text-stone-800">{food.name}</h3>
+                                            <h3 className="text-sm text-stone-800 dark:text-stone-100">{food.name}</h3>
                                             <span className={`text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0
                                                 ${food.cat === 'go'
-                                                    ? 'bg-green-200 text-green-800'
+                                                    ? 'bg-green-200 text-green-800 dark:bg-green-900/60 dark:text-green-200'
                                                     : food.cat === 'caution'
-                                                        ? 'bg-yellow-200 text-yellow-800'
-                                                        : 'bg-red-200 text-red-800'
+                                                        ? 'bg-yellow-200 text-yellow-800 dark:bg-yellow-900/60 dark:text-yellow-200'
+                                                        : 'bg-red-200 text-red-800 dark:bg-red-900/60 dark:text-red-200'
                                                 }`}
                                             >
                                                 {food.cat === 'go' ? 'Safe' : food.cat === 'caution' ? 'Moderate' : 'Avoid'}
@@ -250,10 +250,10 @@ export default function DietPlanPage() {
                                         </div>
 
                                         {/* iron content */}
-                                        <p className="text-xs font-medium text-stone-500 mt-1">{food.mg}</p>
+                                        <p className="text-xs font-medium text-stone-500 dark:text-stone-400 mt-1">{food.mg}</p>
 
                                         {/* note */}
-                                        <p className="text-xs text-stone-500 mt-2 leading-relaxed">{food.note}</p>
+                                        <p className="text-xs text-stone-500 mt-2 leading-relaxed dark:text-stone-400">{food.note}</p>
                                     </div>
                                 ))}
                         </div>
@@ -266,8 +266,8 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg text-stone-800">Sample daily meal plans</h2>
-                        <p className="text-sm text-stone-500 mt-1 mb-4">
+                        <h2 className="text-lg text-stone-800 dark:text-stone-100">Sample daily meal plans</h2>
+                        <p className="text-sm text-stone-500 mt-1 mb-4 dark:text-stone-400">
                             Example meal plans tailored to your sex and life stage. These are guides, not prescriptions.
                         </p>
                     </div>
@@ -280,8 +280,8 @@ export default function DietPlanPage() {
                                 onClick={() => setSelectedSex(option.id)}
                                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]
                                     ${selectedSex === option.id
-                                        ? 'bg-stone-800 text-white'
-                                        : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
+                                        ? 'bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900'
+                                        : 'bg-stone-100 text-stone-500 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:hover:bg-stone-700'
                                     }`}
                             >
                                 {option.label}
@@ -296,32 +296,32 @@ export default function DietPlanPage() {
                                 key={meal.time}
                                 className={`rounded-xl border p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]
                                     ${meal.time === 'Note' || meal.time === 'Important'
-                                        ? 'bg-amber-50 border-amber-200'
-                                        : 'bg-stone-50 border-stone-200'
+                                        ? 'bg-amber-50 border-amber-200 dark:bg-amber-950/30 dark:border-amber-900/60'
+                                        : 'bg-stone-50 border-stone-200 dark:bg-stone-900 dark:border-stone-800'
                                     }`}
                             >
                                 {/* time badge */}
                                 <span className={`inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2
                                     ${meal.time === 'Note' || meal.time === 'Important'
-                                        ? 'bg-amber-200 text-amber-800'
-                                        : 'bg-stone-200 text-stone-600'
+                                        ? 'bg-amber-200 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200'
+                                        : 'bg-stone-200 text-stone-600 dark:bg-stone-800 dark:text-stone-300'
                                     }`}
                                 >
                                     {meal.time}
                                 </span>
 
                                 {/* meal name */}
-                                <h3 className="text-sm text-stone-800">{meal.name}</h3>
+                                <h3 className="text-sm text-stone-800 dark:text-stone-100">{meal.name}</h3>
 
                                 {/* description */}
-                                <p className="text-xs text-stone-500 mt-2 leading-relaxed">{meal.desc}</p>
+                                <p className="text-xs text-stone-500 mt-2 leading-relaxed dark:text-stone-400">{meal.desc}</p>
 
                                 {/* pill tags */}
                                 <div className="flex flex-wrap gap-1.5 mt-3">
                                     {meal.pills.map((pill) => (
                                         <span
                                             key={pill}
-                                            className="text-xs bg-white border border-stone-200 text-stone-600 px-2 py-0.5 rounded-full"
+                                            className="text-xs bg-white border border-stone-200 text-stone-600 px-2 py-0.5 rounded-full dark:bg-stone-800 dark:border-stone-700 dark:text-stone-300"
                                         >
                                             {pill}
                                         </span>
@@ -338,8 +338,8 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg text-stone-800">Timing guide</h2>
-                        <p className="text-sm text-stone-500 mt-1 mb-4">
+                        <h2 className="text-lg text-stone-800 dark:text-stone-100">Timing guide</h2>
+                        <p className="text-sm text-stone-500 mt-1 mb-4 dark:text-stone-400">
                             When you eat matters as much as what you eat. These timing strategies can reduce iron absorption.
                         </p>
                     </div>
@@ -353,11 +353,11 @@ export default function DietPlanPage() {
                             { icon: '⏰', title: 'Space iron-rich foods apart', text: 'If you eat a higher-iron meal at lunch, choose a low-iron option for dinner. Spreading intake across the day gives your body less iron to absorb at once.' },
                             { icon: '🍷', title: 'Avoid alcohol with meals', text: 'Alcohol increases iron absorption and causes liver damage independently. If you drink, do so away from iron-rich meals and stay within recommended limits.' },
                         ].map((tip) => (
-                            <div key={tip.title} className="flex gap-4 items-start bg-stone-50 border border-stone-200 rounded-xl p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
+                            <div key={tip.title} className="flex gap-4 items-start bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
                                 <span className="text-2xl flex-shrink-0">{tip.icon}</span>
                                 <div>
-                                    <h3 className="text-sm text-stone-800">{tip.title}</h3>
-                                    <p className="text-xs text-stone-500 mt-1 leading-relaxed">{tip.text}</p>
+                                    <h3 className="text-sm text-stone-800 dark:text-stone-100">{tip.title}</h3>
+                                    <p className="text-xs text-stone-500 mt-1 dark:text-stone-400 leading-relaxed">{tip.text}</p>
                                 </div>
                             </div>
                         ))}
@@ -370,8 +370,8 @@ export default function DietPlanPage() {
                 <div>
                     {/* heading — fadeInUp, staggered 0.4s */}
                     <div className="opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.05s]">
-                        <h2 className="text-lg text-stone-800">Special considerations</h2>
-                        <p className="text-sm text-stone-500 mt-1 mb-4">
+                        <h2 className="text-lg text-stone-800 dark:text-stone-100">Special considerations</h2>
+                        <p className="text-sm text-stone-500 mt-1 mb-4 dark:text-stone-400">
                             Important dietary factors for specific groups and situations.
                         </p>
                     </div>
@@ -388,17 +388,17 @@ export default function DietPlanPage() {
                             { icon: '🧃', title: 'Fruit juice', text: 'Limit fruit juice to a maximum of 150ml per day. Fructose increases iron absorption, and the vitamin C content further enhances uptake. Whole fruit is always a better choice.' },
                             { icon: '🩸', title: 'Venesection periods', text: 'During active venesection treatment, your doctor may adjust dietary advice. Some patients are temporarily advised to eat more iron-rich foods to maintain energy between treatments. Always follow your medical team\'s guidance.' },
                         ].map((item) => (
-                            <div key={item.title} className="bg-stone-50 border border-stone-200 rounded-xl p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
+                            <div key={item.title} className="bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4 transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]">
                                 <div className="text-2xl mb-2">{item.icon}</div>
-                                <h3 className="text-sm text-stone-800 mb-1">{item.title}</h3>
-                                <p className="text-xs text-stone-500 leading-relaxed">{item.text}</p>
+                                <h3 className="text-sm text-stone-800 dark:text-stone-100 mb-1">{item.title}</h3>
+                                <p className="text-xs text-stone-500 leading-relaxed dark:text-stone-400">{item.text}</p>
                             </div>
                         ))}
                     </div>
 
                     {/* disclaimer — fadeInUp, staggered 0.6s */}
-                    <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.2s]">
-                        <p className="text-sm text-amber-800">
+                    <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl dark:bg-amber-950/30 dark:border-amber-900/60 opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.2s]">
+                        <p className="text-sm text-amber-800 dark:text-amber-200">
                             <span className="font-semibold">Medical disclaimer:</span> This dietary plan is based on
                             the Irish Haemochromatosis Association guidelines and is intended for educational purposes only.
                             Always consult your doctor or dietitian before making dietary changes.
@@ -406,7 +406,7 @@ export default function DietPlanPage() {
                     </div>
 
                     {/* source attribution — fadeInUp, staggered 0.7s */}
-                    <p className="text-xs text-stone-400 mt-4 text-center opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s]">
+                    <p className="text-xs text-stone-400 mt-4 text-center opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] [animation-delay:0.3s] dark:text-stone-500">
                         Based on guidance from the IHA "Diet &amp; Haemochromatosis" guide (Feb 2023)
                         by Sarah Keogh, Consultant Dietitian, in association with INDI.
                     </p>

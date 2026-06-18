@@ -17,6 +17,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
+
+  <!-- apply dark mode before React mounts to avoid a flash of the wrong theme on first paint -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme')
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        var useDark = stored === 'dark' || (!stored && prefersDark)
+        if (useDark) document.documentElement.classList.add('dark')
+      } catch (e) { /* localStorage blocked — fall through to light mode */ }
+    })()
+  </script>
 </head>
 
 <body>
