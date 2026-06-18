@@ -85,7 +85,7 @@ export default function FoodDetailPage() {
 
   // source tag config
   const sourceConfig = {
-    curated: { label: 'HaemoEat', style: 'bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-300' },
+    curated: { label: 'HaemoFood', style: 'bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-300' },
     usda: { label: 'USDA', style: 'bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300' },
     off: { label: 'Open Food Facts', style: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300' },
   }

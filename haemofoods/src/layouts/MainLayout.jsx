@@ -22,10 +22,17 @@ export default function MainLayout() {
         <div className="max-w-3xl mx-auto flex items-center justify-between">
 
           {/* left — logo */}
+          {/* light mode logo — visible by default, hidden in dark mode */}
           <img
             src="/images/logos/HaemoFood_logo.png"
             alt="HaemoFood"
-            className="h-8 w-auto translate-x-[-10px] translate-y-[-6px]" //h-8 = 32px tall, w-auto keeps aspect ratio
+            className="h-8 w-auto translate-x-[-10px] translate-y-[-6px] dark:hidden"
+          />
+          {/* dark mode logo — hidden by default, shown in dark mode */}
+          <img
+            src="/images/logos/HaemoFood_logo_darkmode.png"
+            alt="HaemoFood"
+            className="h-8 w-auto translate-x-[-10px] translate-y-[-6px] hidden dark:block"
           />
 
           {/* centre — nav links */}

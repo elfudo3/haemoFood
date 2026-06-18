@@ -116,8 +116,16 @@ export default function AboutPage() {
                                     <img
                                         src="/images/logos/IHA.png"
                                         alt="Irish Haemochromatosis Association"
-                                        className="max-h-16 object-contain"
+                                        className="max-h-16 object-contain dark:hidden"
                                     />
+
+                                    <img 
+                                        src="/images/logos/IHA_darkmode.png"
+                                        alt="Irish Haemochromatosis Association"
+                                        className="max-h-16 object-contain hidden dark:block"
+
+                                    />
+
                                 </div>
                                 <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4">
                                     <img
@@ -140,21 +148,28 @@ export default function AboutPage() {
                                     <img
                                         src="/images/logos/UG.png"
                                         alt="University of Galway"
-                                        className="max-h-16 object-contain"
+                                        className="max-h-20 object-contain dark:hidden"
                                     />
+
+                                    <img
+                                        src="/images/logos/UG_darkmode.png"
+                                        alt="University of Galway"
+                                        className="max-h-20 object-contain hidden dark:block"
+                                    />
+
                                 </div>
                                 <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4">
                                     <img
                                         src="/images/logos/UCD1.png"
                                         alt="UCD"
-                                        className="max-h-16 object-contain"
+                                        className="max-h-20 object-contain"
                                     />
                                 </div>
                                 <div className="flex items-center justify-center h-24 bg-stone-50 border border-stone-200 rounded-xl dark:bg-stone-900 dark:border-stone-800 p-4">
                                     <img
                                         src="/images/logos/DCU.png"
                                         alt="DCU"
-                                        className="max-h-16 object-contain"
+                                        className="max-h-20 object-contain"
                                     />
                                 </div>
                             </div>
