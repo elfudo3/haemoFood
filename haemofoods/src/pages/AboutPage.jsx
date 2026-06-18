@@ -119,7 +119,7 @@ export default function AboutPage() {
                                         className="max-h-16 object-contain dark:hidden"
                                     />
 
-                                    <img 
+                                    <img
                                         src="/images/logos/IHA_darkmode.png"
                                         alt="Irish Haemochromatosis Association"
                                         className="max-h-16 object-contain hidden dark:block"
@@ -169,8 +169,15 @@ export default function AboutPage() {
                                     <img
                                         src="/images/logos/DCU.png"
                                         alt="DCU"
-                                        className="max-h-20 object-contain"
+                                        className="max-h-20 object-contain dark:hidden"
                                     />
+
+                                    <img
+                                        src="/images/logos/DCU_darkmode.png"
+                                        alt="DCU"
+                                        className="max-h-20 object-contain hidden dark:block"
+                                    />
+
                                 </div>
                             </div>
                         </div>
