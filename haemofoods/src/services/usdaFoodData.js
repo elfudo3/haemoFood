@@ -44,8 +44,9 @@ export async function searchUSDA(query) {
 
     try{
         const url = `${BASE_URL}/foods/search?api_key=${API_KEY}&query=${query}&pageSize=20&dataType=Foundation,SR%20Legacy`
-
+        //fetch(url) defaults to GET
         const response = await fetch(url)
+        //if 400(bad request), 404 (not found), or 500 (server issue) the call returns an empty product instead of an error message
         if (!response.ok) return []
 
         const data = await response.json()
@@ -67,8 +68,9 @@ export async function getUSDAProduct(fdcId) {
   
     try {
       const url = `${BASE_URL}/food/${fdcId}?api_key=${API_KEY}`
-  
+      //fetch(url) defaults to GET
       const response = await fetch(url)
+      //if 400(bad request), 404 (not found), or 500 (server issue) the call returns an empty product instead of an error message
       if (!response.ok) return null
   
       const food = await response.json()
