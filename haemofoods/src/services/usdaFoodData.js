@@ -37,6 +37,8 @@ function transformFood(food, nutrientExtractor) {
     }
 }
 
+//SEARCH — used when the user types into the search bar
+//hits /foods/search, gets back a LIST of matching foods
 export async function searchUSDA(query) {
     //check cache first
     const cacheKey = `usda-search:${query}`
@@ -62,6 +64,8 @@ export async function searchUSDA(query) {
     }
 }
 
+//DETAIL — used on the food detail page, once we already know the exact food
+//hits /food/{id}, gets back ONE food, not a list
 export async function getUSDAProduct(fdcId) {
     const cacheKey = `usda-detail:${fdcId}`
     if (cache.has(cacheKey)) return cache.get(cacheKey)
